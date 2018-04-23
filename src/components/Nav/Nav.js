@@ -5,8 +5,6 @@ import './Nav.css';
 export default function Nav(){
     return(
         <div className='main-nav'>
-            <Link to="/"><h1>LOGO</h1></Link>
-            <a href={process.env.REACT_APP_LOGIN}>Login/Signup</a>
             <div>
                 <p>Menu</p>
                 <ul>
@@ -15,6 +13,8 @@ export default function Nav(){
                     <li><Link to="/resources">Resources</Link></li>
                 </ul>
             </div>
+            <Link to="/"><h1>LOGO</h1></Link>
+            <a href={process.env.REACT_APP_LOGIN}>Login/Signup</a>
         </div>
     )
 }

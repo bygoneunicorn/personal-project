@@ -39,26 +39,26 @@ passport.use( new Auth0Strategy({
 }, 
 function(accessToken, refreshToken, extraParams, profile, done){
     const db = app.get('db')
-    const {id, displayName, picture} = profile;
-    // db.find_user([id]).then( user => {
-        //     if(users[0]){
-            //         return done(null, users[0].id)
-            //     }else{
-                //         db.create_user([displayName, picture, id]).then( createdUser =>{
-                    //             return done( null, createdUser[0].id)
-                    //         })
-                    //     }
-                    // })
-    console.log(profile)
-    return done(null, id)
+    const {id, displayName, picture, emails} = profile;
+    console.log(id)
+    db.find_user([id]).then( users => {
+            if(users[0]){
+                    return done(null, users[0].user_id)
+            }else{                
+                db.create_user([displayName, picture, id, emails[0].value]).then( createdUser =>{
+                    return done( null, createdUser[0].user_id)
+                })
+            }
+        })
 }))
 
-passport.serializeUser(( id, done) =>{
-    console.log(id)
-    return done( null, id )
+passport.serializeUser(( user_id, done) =>{
+    return done( null, user_id )
 })
-passport.deserializeUser((id, done) => {
-        return done(null, id)
+passport.deserializeUser((user_id, done) => {
+    app.get('db').find_session_user([user_id]).then(user => {
+        return done(null, user[0])
+    })
 })
 
 app.get('/auth', passport.authenticate('auth0'))
@@ -76,5 +76,5 @@ app.get('/auth/me', function(req,res) {
 })
 app.get('/logout', function(req, res) {
     req.logOut();
-    res.redirect('http://localhost:3000/#/')
+    res.redirect('http://localhost:3000')
 })
