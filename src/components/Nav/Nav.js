@@ -6,7 +6,7 @@ export default function Nav(){
     return(
         <div className='main-nav'>
             <Link to="/"><h1>LOGO</h1></Link>
-            <Link to="/dashboard">Login/Signup</Link>
+            <a href={process.env.REACT_APP_LOGIN}>Login/Signup</a>
             <div>
                 <p>Menu</p>
                 <ul>
