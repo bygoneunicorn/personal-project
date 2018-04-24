@@ -20,7 +20,7 @@ export default class Dashboard extends Component{
                 </nav>
                 <Switch>
                     <Route path='/dashboard/students/add' component={AddStudents}/>
-                    <Route path='/dashboard/students/:id' component={ViewStudents} />
+                    <Route path='/dashboard/students/:student_id' component={ViewStudents} />
                     <Route path='/dashboard/students' component={Students}/>
                     <Route path='/dashboard/lessons' component={Lessons} />
                     <Route path='/dashboard/payments' component={Payments} />

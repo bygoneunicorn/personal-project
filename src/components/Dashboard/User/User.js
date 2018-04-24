@@ -8,13 +8,16 @@ class User extends Component{
     }
     render(){
         console.log(this.props.user)
+        console.log(this.props.user.user.display_name)
         return(
             <div>                
             {
-                this.props.user.display_name ? 
+                this.props.user.user ? 
                 (
                     <div>                            
-                        <p>Account Holder: {this.props.user.display_name}</p>
+                        <p>Account Holder: {this.props.user.user.display_name}</p>
+                        <p>Email: {this.props.user.user.email}</p>
+                        <img src={this.props.user.user.img} alt='Profile'/>
                     </div>
                 ) :
                 <p>Please Log In</p>

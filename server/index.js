@@ -5,6 +5,7 @@ const express = require('express')
     , Auth0Strategy = require('passport-auth0')
     , massive = require('massive')
     , bodyParser = require('body-parser')
+    , sc = require('./controllers/studentController')
 
 const app = express();
 
@@ -30,6 +31,8 @@ app.use( session({
     resave: false,
     saveUninitialized: true
 }));
+
+//authentication
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -81,3 +84,10 @@ app.get('/logout', function(req, res) {
     req.logOut();
     res.redirect('http://localhost:3000')
 })
+
+// student information enpoints
+app.get('/students/:user_id', sc.getStudents);
+app.get('/student/:student_id', sc.getStudent)
+app.post('/student/add', sc.addStudent);
+app.put('/student/:student_id', sc.updateStudent);
+app.delete('/student/:student_id', sc.deleteStudent);
