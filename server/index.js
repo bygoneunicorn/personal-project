@@ -4,6 +4,7 @@ const express = require('express')
     , passport = require('passport')
     , Auth0Strategy = require('passport-auth0')
     , massive = require('massive')
+    , bodyParser = require('body-parser')
 
 const app = express();
 
@@ -21,6 +22,8 @@ massive(CONNECTION_STRING).then( db =>{
     app.set('db', db);
     app.listen(SERVER_PORT, () => console.log(`Hear the beautiful music on port ${SERVER_PORT}`))
 });
+
+app.use( bodyParser.json())
 
 app.use( session({
     secret: SESSION_SECRET,

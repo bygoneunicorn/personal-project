@@ -7,7 +7,7 @@ class User extends Component{
         this.props.getUser()
     }
     render(){
-        console.log(this.props)
+        console.log(this.props.user)
         return(
             <div>                
             {
@@ -19,7 +19,7 @@ class User extends Component{
                 ) :
                 <p>Please Log In</p>
             }
-                <h2>All the individual's user information store in this component</h2>
+                <h2>All the individual's user information stored in this component</h2>
             </div>
         )
     }
