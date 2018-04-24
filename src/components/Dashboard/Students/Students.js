@@ -34,7 +34,8 @@ class Students extends Component{
 
 function mapStateToProps( state ){
     return{
-        students: state.students
+        students: state.students,
+        user: state.user.user
     }
 }
 
