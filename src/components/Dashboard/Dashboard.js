@@ -3,7 +3,7 @@ import {Link, Route, Switch} from 'react-router-dom';
 import User from './User/User';
 import Students from './Students/Students';
 import AddStudents from './Students/AddStudent';
-import ViewStudents from './Students/ViewStudent';
+import ViewStudent from './Students/ViewStudent';
 import Lessons from './Lessons/Lessons';
 import Payments from './Payments/Payments';
 
@@ -20,7 +20,7 @@ export default class Dashboard extends Component{
                 </nav>
                 <Switch>
                     <Route path='/dashboard/students/add' component={AddStudents}/>
-                    <Route path='/dashboard/students/:student_id' component={ViewStudents} />
+                    <Route path='/dashboard/student/:student_id' component={ViewStudent} />
                     <Route path='/dashboard/students' component={Students}/>
                     <Route path='/dashboard/lessons' component={Lessons} />
                     <Route path='/dashboard/payments' component={Payments} />

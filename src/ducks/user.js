@@ -7,8 +7,8 @@ const initialState = {
 const GET_USER_INFO = 'GET_USER_INFO';
 
 export function getUser(){
-    let userData = axios.get('/auth/me').then( res => {
-        return res.data
+    let userData = axios.get('/auth/me').then( response => {
+        return response.data
     })
     return{
         type: GET_USER_INFO,

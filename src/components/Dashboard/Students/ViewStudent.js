@@ -1,18 +1,43 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {getStudent} from '../../../ducks/students';
 
-export default class ViewStudent extends Component{
+class ViewStudent extends Component{
+    componentDidMount(){
+        this.props.getStudent(this.props.match.params.student_id)
+    }
+    
     render(){
+        console.log(this.props)
+        const {first_name, last_name, birthday, grade, history, gender } = this.props.currentStudent
+
         return(
             <div>
-                <p>this student's first name</p>
-                <p>this student's last name</p>
-                <p>this student's birthdate</p>
-                <p>this student's grade</p>
-                <p>this student's history</p>
-                <p>this student's gender</p>
-                <button>Edit</button>
-                <button>Delete</button>
+                {
+                    this.props.currentStudent ?
+                    (
+                        <div>
+                            <p>{first_name} {last_name}</p>
+                            <p>{birthday}</p>
+                            <p>{grade}</p>
+                            <p>{history}</p>
+                            <p>{gender}</p>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </div>
+                    ):
+                    null
+                }
             </div>
         )
     }
 }
+
+function mapStateToProps(state){
+    console.log(state)
+    return{
+        currentStudent: state.students.currentStudent
+    }
+}
+
+export default connect(mapStateToProps, {getStudent})(ViewStudent)

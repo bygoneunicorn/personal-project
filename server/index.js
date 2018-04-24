@@ -5,6 +5,7 @@ const express = require('express')
     , Auth0Strategy = require('passport-auth0')
     , massive = require('massive')
     , bodyParser = require('body-parser')
+    , cors = require('cors')
     , sc = require('./controllers/studentController')
 
 const app = express();
@@ -25,6 +26,7 @@ massive(CONNECTION_STRING).then( db =>{
 });
 
 app.use( bodyParser.json())
+app.use( cors() )
 
 app.use( session({
     secret: SESSION_SECRET,
@@ -49,6 +51,7 @@ function(accessToken, refreshToken, extraParams, profile, done){
     console.log(id)
     db.find_user([id]).then( users => {
             if(users[0]){
+                console.log(users[0].user_id)
                     return done(null, users[0].user_id)
             }else{                
                 db.create_user([displayName, picture, id, emails[0].value]).then( createdUser =>{
@@ -84,6 +87,9 @@ app.get('/logout', function(req, res) {
     req.logOut();
     res.redirect('http://localhost:3000')
 })
+
+// user information endpoints
+
 
 // student information enpoints
 app.get('/students/:user_id', sc.getStudents);

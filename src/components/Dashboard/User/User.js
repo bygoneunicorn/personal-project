@@ -7,17 +7,15 @@ class User extends Component{
         this.props.getUser()
     }
     render(){
-        console.log(this.props.user)
-        console.log(this.props.user.user.display_name)
         return(
             <div>                
             {
-                this.props.user.user ? 
+                this.props.user.display_name ? 
                 (
                     <div>                            
-                        <p>Account Holder: {this.props.user.user.display_name}</p>
-                        <p>Email: {this.props.user.user.email}</p>
-                        <img src={this.props.user.user.img} alt='Profile'/>
+                        <p>Account Holder: {this.props.user.display_name}</p>
+                        <p>Email: {this.props.user.email}</p>
+                        <img src={this.props.user.img} alt='Profile'/>
                     </div>
                 ) :
                 <p>Please Log In</p>
@@ -30,7 +28,7 @@ class User extends Component{
 
 function mapStateToProps(state){
     return{
-        user: state.user
+        user: state.user.user
     }
 }
 

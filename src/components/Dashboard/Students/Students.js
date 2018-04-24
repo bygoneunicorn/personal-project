@@ -8,12 +8,13 @@ class Students extends Component{
         this.props.getStudents()
     }
     render(){
-        // const studentLis
-        console.log(this.props.students.students)
-        const studentList = this.props.students.students.map(student => {
+        console.log(this.props)
+        let studentList = this.props.students.students.map(student => {
             return(
                 <div key={student.student_id}>
-                    <h4>{student.first_name} {student.last_name}</h4>
+                    <Link to={`/dashboard/student/${student.student_id}`}>
+                        <h4>{student.first_name} {student.last_name}</h4>
+                    </Link>
                 </div>
             )
         })

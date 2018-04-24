@@ -8,7 +8,7 @@ module.exports = {
     getStudent : (req, res, next) => {
         const {student_id} = req.params
         req.app.get('db').get_student([student_id]).then( student => {
-            res.status(200).send(student)
+            res.status(200).send(student[0])
         })
     },
     addStudent : (req, res, next) => {
