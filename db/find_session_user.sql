@@ -1,2 +1,2 @@
 select * from users
-where id = $1
+where user_id = $1
