@@ -4,6 +4,7 @@ import User from './User/User';
 import Students from './Students/Students';
 import AddStudents from './Students/AddStudent';
 import ViewStudent from './Students/ViewStudent';
+import EditStudent from './Students/EditStudent';
 import Lessons from './Lessons/Lessons';
 import Payments from './Payments/Payments';
 
@@ -20,6 +21,7 @@ export default class Dashboard extends Component{
                 </nav>
                 <Switch>
                     <Route path='/dashboard/students/add' component={AddStudents}/>
+                    <Route path='/dashboard/student/edit/:student_id' component={EditStudent}/>
                     <Route path='/dashboard/student/:student_id' component={ViewStudent} />
                     <Route path='/dashboard/students' component={Students}/>
                     <Route path='/dashboard/lessons' component={Lessons} />

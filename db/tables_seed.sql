@@ -12,16 +12,15 @@ create table students(
     first_name varchar(40),
     last_name varchar(40),
     birthday varchar(60),
-    grade varchar(20),
     history varchar(300),
-    gender varchar(20)
+    gender integer
 );
-insert into students(user_id, first_name, last_name, birthday, grade, history, gender)
-values (1, 'Billy', 'Bob Jr', '05-14-1999', '12', 'Used to play violin with grandparents', 'male');
+insert into students(user_id, first_name, last_name, birthday, history, gender)
+values (1, 'Billy', 'Bob Jr', '05-14-1999', 'Used to play violin with grandparents', 2);
 
 create table lessons(
     lesson_id serial primary key,
-    student_id integer references students,
+    student_id integer references students.student_id,
     date_of_lesson varchar(60),
     time_of_lesson varchar(60),
     price decimal(8,2),
@@ -32,7 +31,7 @@ values(1, '12-12-2020', '1:00PM', 35.00, false);
 
 create table payments(
     payment_id serial primary key,
-    lesson_id integer references lessons,
+    lesson_id integer references lessons.lesson_id,
     amount decimal(8,2)
 );
 insert into payments(lesson_id, amount)

@@ -7,7 +7,12 @@ const initialState = {
     newStudentLastName: '',
     newStudentBirthday: null,
     newStudentHistory: '',
-    newStudentGender: null
+    newStudentGender: null,
+    updateStudentFirstName: '',
+    updateStudentLastName: '',
+    updateStudentBirthday: null,
+    updateStudentHistory: '',
+    updateStudentGender: null
 }
 
 const GET_ALL_STUDENTS = 'GET_ALL_STUDENTS';
@@ -18,10 +23,15 @@ const HANDLE_BIRTHDAY = 'HANDLE_BIRTHDAY';
 const HANDLE_HISTORY = 'HANDLE_HISTORY';
 const HANDLE_GENDER = 'HANDLE_GENDER';
 const ADD_STUDENT = 'ADD_STUDENT';
+const UPDATE_STUDENT_FIRST = 'UPDATE_STUDENT_FIRST';
+const UPDATE_STUDENT_LAST = 'UPDATE_STUDENT_LAST';
+const UPDATE_STUDENT_BIRTHDAY = 'UPDATE_STUDENT_BIRTHDAY';
+const UPDATE_STUDENT_HISTORY = 'UPDATE_STUDENT_HISTORY';
+const UPDATE_STUDENT_GENDER = 'UPDATE_STUDENT_GENDER';
 
 
-export function getStudents(){
-    let studentData = axios.get('/students/1').then( res =>{
+export function getStudents(user_id){
+    let studentData = axios.get(`/students/${user_id}`).then( res =>{
         return res.data
     })
     return{
@@ -31,7 +41,6 @@ export function getStudents(){
 }
 export function getStudent(student_id){
     let studentData = axios.get(`/student/${student_id}`).then( res => {
-
         return res.data
     })
     return{
@@ -69,8 +78,45 @@ export function handleGender(gender){
         payload: gender
     }
 }
-export function addStudent(){
-    
+export function addStudent(user_id, first_name, last_name, birthday, history, gender){
+    birthday = JSON.stringify(birthday)
+    axios.post('/student/add', {user_id, first_name, last_name, birthday, history, gender})
+        .then( res =>{
+            console.log('it worked maybe!')
+        })
+        return{
+            type: ADD_STUDENT
+        }
+}
+export function updateFirst(first_name){
+    return{
+        type: UPDATE_STUDENT_FIRST,
+        payload: first_name 
+    }
+}
+export function updateLast(last_name){
+    return{
+        type: UPDATE_STUDENT_LAST,
+        payload: last_name
+    }
+}
+export function updateBirthday(event, date){
+    return{
+        type: UPDATE_STUDENT_BIRTHDAY,
+        payload: date
+    }
+}
+export function updateHistory(history){
+    return{
+        type: UPDATE_STUDENT_HISTORY,
+        payload: history
+    }
+}
+export function updateGender(gender){
+    return{
+        type: UPDATE_STUDENT_GENDER,
+        payload: gender
+    }
 }
 
 export default function studentsReducer( state = initialState, action){
@@ -88,7 +134,25 @@ export default function studentsReducer( state = initialState, action){
         case HANDLE_HISTORY:
             return Object.assign({}, state, {newStudentHistory: action.payload})
         case HANDLE_GENDER:
-            return Object.assign({}, state, {newStudentGender: action.payload})    
+            return Object.assign({}, state, {newStudentGender: action.payload})
+        case ADD_STUDENT:
+            return Object.assign({}, state, {
+                newStudentFirstName: '',
+                newStudentLastName: '',
+                newStudentBirthday: null,
+                newStudentHistory: '',
+                newStudentGender: null
+            })   
+        case UPDATE_STUDENT_FIRST:
+            return Object.assign({}, state, {updateStudentFirstName: action.payload})
+        case UPDATE_STUDENT_LAST:
+            return Object.assign({}, state, {updateStudentLastName: action.payload})
+        case UPDATE_STUDENT_BIRTHDAY:
+            return Object.assign({}, state, {updateStudentBirthday: action.payload})
+        case UPDATE_STUDENT_HISTORY:
+            return Object.assign({}, state, {updateStudentHistory: action.payload})
+        case UPDATE_STUDENT_GENDER:
+            return Object.assign({}, state, {updateStudentGender: action.payload})
         default: 
             return state;
     }

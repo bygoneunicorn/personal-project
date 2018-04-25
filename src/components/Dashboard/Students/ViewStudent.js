@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getStudent} from '../../../ducks/students';
+import {Link} from 'react-router-dom';
 
 class ViewStudent extends Component{
     componentDidMount(){
@@ -9,7 +10,7 @@ class ViewStudent extends Component{
     
     render(){
         console.log(this.props)
-        const {first_name, last_name, birthday, grade, history, gender } = this.props.currentStudent
+        const { student_id, first_name, last_name, birthday, grade, history, gender } = this.props.currentStudent
 
         return(
             <div>
@@ -22,7 +23,7 @@ class ViewStudent extends Component{
                             <p>{grade}</p>
                             <p>{history}</p>
                             <p>{gender}</p>
-                            <button>Edit</button>
+                            <Link to={`/dashboard/student/edit/${student_id}`}><button>Edit</button></Link>
                             <button>Delete</button>
                         </div>
                     ):

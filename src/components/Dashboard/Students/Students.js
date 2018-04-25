@@ -5,7 +5,8 @@ import {getStudents} from '../../../ducks/students';
 
 class Students extends Component{
     componentDidMount(){
-        this.props.getStudents()
+        const user_id = this.props.user.user_id
+        this.props.getStudents(user_id)
     }
     render(){
         console.log(this.props)
