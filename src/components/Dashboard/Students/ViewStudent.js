@@ -11,6 +11,7 @@ class ViewStudent extends Component{
     render(){
         console.log(this.props)
         const { student_id, first_name, last_name, birthday, grade, history, gender } = this.props.currentStudent
+        const { user_id } = this.props.match.params;
 
         return(
             <div>
@@ -23,7 +24,7 @@ class ViewStudent extends Component{
                             <p>{grade}</p>
                             <p>{history}</p>
                             <p>{gender}</p>
-                            <Link to={`/dashboard/student/edit/${student_id}`}><button>Edit</button></Link>
+                            <Link to={`/dashboard/${user_id}/student/edit/${student_id}`}><button>Edit</button></Link>
                             <button>Delete</button>
                         </div>
                     ):

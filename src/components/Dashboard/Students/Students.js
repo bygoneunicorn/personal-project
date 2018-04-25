@@ -10,10 +10,11 @@ class Students extends Component{
     }
     render(){
         console.log(this.props)
+        const {user_id} = this.props.user
         let studentList = this.props.students.students.map(student => {
             return(
                 <div key={student.student_id}>
-                    <Link to={`/dashboard/student/${student.student_id}`}>
+                    <Link to={`/dashboard/${user_id}/student/${student.student_id}`}>
                         <h4>{student.first_name} {student.last_name}</h4>
                     </Link>
                 </div>
@@ -27,7 +28,7 @@ class Students extends Component{
                 This component will render a list of students according to how many students there on for the given user on the db. they're not gonna be hard coded in like they are now */}
                 {studentList}
                 <br/>
-                <Link to='/dashboard/students/add'><button>Add Student</button></Link>
+                <Link to={`/dashboard/${user_id}/students/add`}><button>Add Student</button></Link>
             </div>
         )
     }

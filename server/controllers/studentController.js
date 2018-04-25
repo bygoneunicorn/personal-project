@@ -16,6 +16,7 @@ module.exports = {
         })
     },
     addStudent : (req, res, next) => {
+        console.log(req.body)
         const {user_id, 
             newStudentFirstName, 
             newStudentLastName,
