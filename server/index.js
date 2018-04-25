@@ -7,6 +7,7 @@ const express = require('express')
     , bodyParser = require('body-parser')
     , cors = require('cors')
     , sc = require('./controllers/studentController')
+    , lc = require('./controllers/lessonController')
 
 const app = express();
 
@@ -97,3 +98,6 @@ app.get('/student/:student_id', sc.getStudent)
 app.post('/student/add', sc.addStudent);
 app.put('/student/:student_id', sc.updateStudent);
 app.delete('/student/:student_id', sc.deleteStudent);
+
+app.get('/lessons/:user_id', lc.getAllLessons)
+app.get('/lesson/:lesson_id', lc.getOneLesson)

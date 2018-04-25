@@ -17,14 +17,15 @@ module.exports = {
     },
     addStudent : (req, res, next) => {
         console.log(req.body)
-        const {user_id, 
-            newStudentFirstName, 
-            newStudentLastName,
-            newStudentBirthday,
-            newStudentHistory,
-            newStudentGender 
-        } = req.body.user_id
-        req.app.get('db').add_student([user_id, first_name, last_name, birthday, history, gender]).then( student =>{
+            const {
+                user_id,
+                newStudentFirstName, 
+                newStudentLastName,
+                newStudentBirthday,
+                newStudentHistory,
+                newStudentGender 
+} = req.body.user_id
+            req.app.get('db').add_student([user_id, newStudentFirstName, newStudentLastName, newStudentBirthday, newStudentHistory, newStudentGender,]).then( student => {
             res.status(200).send(student)
         }).catch((err) => {
             console.log(err)
@@ -32,8 +33,14 @@ module.exports = {
     },
     updateStudent: (req, res, next) => {
         const {student_id} = req.params;
-        const {first_name, last_name, birthday, history, gender} = req.body
-        req.app.get('db').update_student([student_id, first_name, last_name, birthday, history, gender]).then( student => {
+        const {
+            first_name, 
+            last_name, 
+            birthday, 
+            history, 
+            gender
+        } = req.body
+        req.app.get('db').update_student([student_id, first_name, last_name, birthday, history, gender]).then( student =>{
             res.status(200).send(student)
         }).catch((err) => {
             console.log(err)

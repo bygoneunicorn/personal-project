@@ -36,7 +36,6 @@ class ViewStudent extends Component{
 }
 
 function mapStateToProps(state){
-    console.log(state)
     return{
         currentStudent: state.students.currentStudent
     }
