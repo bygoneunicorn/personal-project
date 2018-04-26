@@ -3,9 +3,6 @@ import { getUser } from '../../../ducks/user';
 import { connect } from 'react-redux';
 
 class User extends Component{
-    componentDidMount(){
-        this.props.getUser()
-    }
     render(){
         return(
             <div>                

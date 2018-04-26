@@ -13,10 +13,15 @@ import {getUser} from '../../ducks/user';
 import { connect } from 'react-redux';
 
 class Dashboard extends Component{
+    componentDidMount(){
+        this.props.getUser()
+    }
     render(){
         console.log(this.props)
         const {user_id} = this.props.user
         return(
+            user_id ? 
+            (
             <div>
                 <h1>Dashboard component here</h1>
                 <nav>
@@ -37,6 +42,8 @@ class Dashboard extends Component{
                     <Route path='/dashboard' component={User} />
                 </Switch>
             </div>
+            ) :
+            <h3>Please Log In</h3>
         )
     }
 }

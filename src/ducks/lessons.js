@@ -2,11 +2,19 @@ import axios from 'axios';
 
 const initialState = {
     lessons: [],
-    currentLesson: {}
+    currentLesson: {},
+    newLessonDate: {},
+    newLessonTime: {},
+    newLessonPrice: null,
+    newLessonGroup: false
 }
 
 const GET_ALL_LESSONS = 'GET_ALL_LESSONS';
 const GET_ONE_LESSON = 'GET_ONE_LESSON';
+const NEW_LESSON_DATE = 'NEW_LESSON_DATE';
+const NEW_LESSON_TIME = 'NEW_LESSON_TIME';
+const NEW_LESSON_PRICE = 'NEW_LESSON_PRICE';
+const NEW_LESSON_GROUP = 'NEW_LESSON_GROUP';
 
 export function getLessons(user_id){
     let lessonData = axios.get(`/lessons/${user_id}`).then( res=> {
@@ -26,6 +34,7 @@ export function getLesson(lesson_id){
         payload: lessonData
     }
 }
+
 
 export default function lessonsReducer( state = initialState, action){
     switch(action.type){

@@ -24,7 +24,7 @@ module.exports = {
                 newStudentBirthday,
                 newStudentHistory,
                 newStudentGender 
-} = req.body.user_id
+} = req.body
             req.app.get('db').add_student([user_id, newStudentFirstName, newStudentLastName, newStudentBirthday, newStudentHistory, newStudentGender,]).then( student => {
             res.status(200).send(student)
         }).catch((err) => {

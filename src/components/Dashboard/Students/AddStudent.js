@@ -80,14 +80,14 @@ class AddStudent extends Component{
 
                     <RaisedButton 
                     label="Submit"
-                    onClick={() => {addStudent({
+                    onClick={() => {addStudent(
                         user_id,
                         newStudentFirstName, 
                         newStudentLastName, 
                         newStudentBirthday,
                         newStudentHistory,
                         newStudentGender
-                    })}
+                    )}
                 }
                     />
 

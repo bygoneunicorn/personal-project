@@ -17,6 +17,8 @@ class Students extends Component{
                     <Link to={`/dashboard/${user_id}/student/${student.student_id}`}>
                         <h4>{student.first_name} {student.last_name}</h4>
                     </Link>
+                    <Link to='#'><button>Open Lesson Manager for {student.first_name}</button></Link>
+                    
                 </div>
             )
         })
