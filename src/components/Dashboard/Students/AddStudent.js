@@ -32,7 +32,7 @@ class AddStudent extends Component{
             } = this.props
         return(
             <div>
-                <h1>Add a student here!</h1>
+                <h2>Add a student here!</h2>
 
                 <TextField
                         id="input-first-name"

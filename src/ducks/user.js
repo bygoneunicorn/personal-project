@@ -5,6 +5,7 @@ const initialState = {
 }
 
 const GET_USER_INFO = 'GET_USER_INFO';
+const USER_LOGOUT = 'USER_LOGOUT';
 
 
 export function getUser(){
@@ -16,11 +17,21 @@ export function getUser(){
         payload: userData
     }
 }
+export function logOut(){
+    axios.get('/logout').then(res =>{
+        return null
+    })
+    return{
+        type: USER_LOGOUT,
+    }
+}
 
 export default function userReducer( state = initialState, action){
     switch(action.type){
         case GET_USER_INFO + '_FULFILLED':
             return Object.assign({}, state, {user: action.payload})
+        case USER_LOGOUT + '_FULFILLED':
+            return Object.assign({})
         default: 
             return state;
     }

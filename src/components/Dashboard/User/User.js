@@ -17,7 +17,6 @@ class User extends Component{
                 ) :
                 <p>Please Log In</p>
             }
-                <h2>All the individual's user information stored in this component</h2>
             </div>
         )
     }

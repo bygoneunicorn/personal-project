@@ -1,23 +1,31 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getStudent} from '../../../ducks/students';
+import {getStudent, deleteStudent} from '../../../ducks/students';
+import {getLessonsByStudent} from '../../../ducks/lessons';
 import {Link} from 'react-router-dom';
 
 class ViewStudent extends Component{
     componentDidMount(){
-        this.props.getStudent(this.props.match.params.student_id)
+        const {getStudent, getLessonsByStudent} = this.props
+        const {student_id} = this.props.match.params
+        getStudent(student_id)
+        getLessonsByStudent(student_id)
     }
     
     render(){
         console.log(this.props)
         const { student_id, first_name, last_name, birthday, grade, history, gender } = this.props.currentStudent
         const { user_id } = this.props.match.params;
+        let lessonsList = this.props.currentStudentLessons.map(( lesson => {
+            return(
+                <div key={lesson.lesson_id}>
+                    <h4>{lesson.date_of_lesson} {lesson.time_of_lesson} Price: ${lesson.price}</h4>
+                </div>
+            )
+        }))
 
         return(
             <div>
-                {
-                    this.props.currentStudent ?
-                    (
                         <div>
                             <p>{first_name} {last_name}</p>
                             <p>{birthday}</p>
@@ -25,11 +33,14 @@ class ViewStudent extends Component{
                             <p>{history}</p>
                             <p>{gender}</p>
                             <Link to={`/dashboard/${user_id}/student/edit/${student_id}`}><button>Edit</button></Link>
-                            <button>Delete</button>
+                            <Link to={`/dashboard/${user_id}/students`}><button onClick={() => deleteStudent(student_id)}>Delete</button></Link>
                         </div>
-                    ):
-                    null
-                }
+                        <div>
+                            <h3>Lessons Display here</h3>
+                            {lessonsList}
+                            <Link to='/'><div>Add a Lesson</div></Link>
+                            
+                        </div>
             </div>
         )
     }
@@ -37,8 +48,9 @@ class ViewStudent extends Component{
 
 function mapStateToProps(state){
     return{
-        currentStudent: state.students.currentStudent
+        currentStudent: state.students.currentStudent,
+        currentStudentLessons: state.lessons.currentStudentLessons
     }
 }
 
-export default connect(mapStateToProps, {getStudent})(ViewStudent)
+export default connect(mapStateToProps, {getStudent, getLessonsByStudent, deleteStudent})(ViewStudent)

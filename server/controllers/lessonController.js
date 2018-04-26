@@ -11,6 +11,16 @@ module.exports = {
         const {lesson_id} = req.params
         req.app.get('db').get_one_lesson([lesson_id]).then(lesson => {
             res.status(200).send(lesson)
+        }).catch((err) => {
+            console.log(err)
+        })
+    },
+    getLessonByStudent: (req, res, next) => {
+        const {student_id} = req.params
+        req.app.get('db').get_lesson_by_student([student_id]).then( lesson => {
+            res.status(200).send(lesson)
+        }).catch((err) => {
+            console.log(err)
         })
     }
 }

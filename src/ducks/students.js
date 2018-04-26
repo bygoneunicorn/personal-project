@@ -23,6 +23,7 @@ const HANDLE_BIRTHDAY = 'HANDLE_BIRTHDAY';
 const HANDLE_HISTORY = 'HANDLE_HISTORY';
 const HANDLE_GENDER = 'HANDLE_GENDER';
 const ADD_STUDENT = 'ADD_STUDENT';
+const DELETE_STUDENT = 'DELETE_STUDENT'
 const UPDATE_STUDENT_FIRST = 'UPDATE_STUDENT_FIRST';
 const UPDATE_STUDENT_LAST = 'UPDATE_STUDENT_LAST';
 const UPDATE_STUDENT_BIRTHDAY = 'UPDATE_STUDENT_BIRTHDAY';
@@ -89,6 +90,15 @@ export function addStudent(user_id, first_name, last_name, birthday, history, ge
             type: ADD_STUDENT
         }
 }
+export function deleteStudent(student_id){
+    axios.delete(`/student/${student_id}`)
+        .then( res =>{
+            return null
+        })
+        return{
+            type: DELETE_STUDENT
+        }
+}
 export function updateFirst(first_name){
     return{
         type: UPDATE_STUDENT_FIRST,
@@ -143,7 +153,9 @@ export default function studentsReducer( state = initialState, action){
                 newStudentBirthday: null,
                 newStudentHistory: '',
                 newStudentGender: null
-            })   
+            })
+        case DELETE_STUDENT: 
+            return Object.assign({}, state, {currentStudent: {}})
         case UPDATE_STUDENT_FIRST:
             return Object.assign({}, state, {updateStudentFirstName: action.payload})
         case UPDATE_STUDENT_LAST:

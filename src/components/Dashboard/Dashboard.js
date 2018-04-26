@@ -23,7 +23,6 @@ class Dashboard extends Component{
             user_id ? 
             (
             <div>
-                <h1>Dashboard component here</h1>
                 <nav>
                     <Link to={`/dashboard/${user_id}`}><button>User</button></Link>
                     <Link to={`/dashboard/${user_id}/students`}><button>Students</button></Link>
@@ -38,7 +37,7 @@ class Dashboard extends Component{
                     <Route path={`/dashboard/:user_id/lesson/:lesson_id`} component={ViewLesson} />
                     <Route path={`/dashboard/:user_id/lessons/add`} component={AddLesson} />
                     <Route path={`/dashboard/:user_id/lessons`} component={Lessons} />
-                    <Route path='/dashboard/payments' component={Payments} />
+                    <Route path={`/dashboard/:user_id/payments`} component={Payments} />
                     <Route path='/dashboard' component={User} />
                 </Switch>
             </div>
