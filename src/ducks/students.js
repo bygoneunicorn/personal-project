@@ -79,10 +79,24 @@ export function handleGender(gender){
         payload: gender
     }
 }
-export function addStudent(user_id, first_name, last_name, birthday, history, gender){
-    birthday = JSON.stringify(birthday)
-    console.log(user_id, first_name, last_name, birthday, history, gender)
-    axios.post('/student/add', {user_id, first_name, last_name, birthday, history, gender})
+export function addStudent(
+    user_id,
+    newStudentFirstName, 
+    newStudentLastName, 
+    newStudentBirthday,
+    newStudentHistory,
+    newStudentGender
+){
+    newStudentBirthday = JSON.stringify(newStudentBirthday)
+    axios.post('/student/add', 
+    {
+        user_id,
+        newStudentFirstName, 
+        newStudentLastName, 
+        newStudentBirthday,
+        newStudentHistory,
+        newStudentGender
+    })
         .then( res =>{
             console.log('it worked maybe!')
         })

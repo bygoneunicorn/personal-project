@@ -13,6 +13,9 @@ import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import IconButton from 'material-ui/IconButton';
+import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
+
 
 class AddStudent extends Component{
     render(){
@@ -32,7 +35,17 @@ class AddStudent extends Component{
             } = this.props
         return(
             <div>
-                <h2>Add a student here!</h2>
+                <h2>Add a student here!
+                    <IconButton 
+                        tooltip="Back to Students"
+                        tooltipPosition="bottom-center"
+                        touch={true}
+                        href={`/#/dashboard/${user_id}/students`}
+                    >
+                        <NavigationArrowBack  />
+                    </IconButton>
+
+                </h2>
 
                 <TextField
                         id="input-first-name"

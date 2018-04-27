@@ -22,5 +22,15 @@ module.exports = {
         }).catch((err) => {
             console.log(err)
         })
+    },
+    addLesson: (req, res, next) => {
+        console.log(req.body)
+        const {studentIdLessonToAdd, newLessonDate, newLessonTime, newLessonPrice} = req.body
+        req.app.get('db').add_lesson([studentIdLessonToAdd, newLessonDate, newLessonTime, newLessonPrice])
+            .then( lesson => {
+                res.status(200).send()
+            }).catch((err) => {
+                console.log(err)
+            })
     }
 }

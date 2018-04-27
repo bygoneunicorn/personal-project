@@ -102,3 +102,4 @@ app.delete('/student/:student_id', sc.deleteStudent);
 app.get('/lessons/:user_id', lc.getAllLessons)
 app.get('/lesson/:lesson_id', lc.getOneLesson)
 app.get('/lessons/bystudent/:student_id', lc.getLessonByStudent)
+app.post('/lesson/add', lc.addLesson)
