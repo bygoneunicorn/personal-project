@@ -52,6 +52,8 @@ class AddStudent extends Component{
                         hintText="First Name"
                         value={newStudentFirstName}
                         onChange={(e) => handleFirstName(e.target.value)}
+                        errorText="This field is required."
+
                     />
                 <br/>
 
@@ -101,7 +103,7 @@ class AddStudent extends Component{
                         newStudentHistory,
                         newStudentGender
                     )}
-                }
+                    }
                     />
 
             </div>

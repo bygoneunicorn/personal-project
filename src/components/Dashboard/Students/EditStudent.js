@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
-    getStudent, 
+    getStudent,
+    mountCurrentToBeUpdated, 
     updateFirst, 
     updateLast, 
     updateBirthday, 
     updateHistory,
-    updateGender
+    updateGender,
+    saveStudentChanges
 } from '../../../ducks/students';
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
@@ -15,17 +17,27 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
 class EditStudent extends Component{
+    constructor(props){
+        super(props)
+
+        this.state =  {}
+    }
+    componentDidMount(){
+        this.props.mountCurrentToBeUpdated(this.props.currentStudent)
+    }
     render(){
         console.log(this.props)
         const {
             currentStudent,
+            studentBeingUpdated,
             updateStudentBirthday,
             updateStudentGender,
             updateFirst,
             updateLast,
             updateBirthday,
             updateHistory,
-            updateGender
+            updateGender,
+            saveStudentChanges
         } = this.props
         return(
             <div>
@@ -33,23 +45,24 @@ class EditStudent extends Component{
                         id="update-first-name"
                         defaultValue={currentStudent.first_name}
                         onChange={(e) => updateFirst(e.target.value)}
+                        floatingLabelText='First Name'
                 />
-                <RaisedButton label="Update First Name"/>
                 <br />
                 <TextField
                         id="update-last-name"
                         defaultValue={currentStudent.last_name}
                         onChange={(e) => updateLast(e.target.value)}
+                        floatingLabelText='Last Name'
                 />
-                <RaisedButton label="Update Last Name"/>
                 <DatePicker 
-                        hintText="Select Birthday" 
+                        hintText={currentStudent.birthday} 
                         openToYearSelection={true} 
-                        value={updateStudentBirthday}
+                        value={studentBeingUpdated.birthday}
                         onChange={updateBirthday}
                         hideCalendarDate={false}
+                        floatingLabelText='Birthday'
+
                 />
-                <RaisedButton label="Update Birthday"/>
                 <br />
                 <TextField
                         id="update-history"
@@ -59,18 +72,22 @@ class EditStudent extends Component{
                         multiLine={true}
                         rows={2}
                         rowsMax={5}
+                        floatingLabelText='Student history and experience'
                 />
-                <RaisedButton label="Update History"/>
                 <br />
                 <SelectField
                     floatingLabelText="Student Gender"
-                    value={updateStudentGender}
+                    value={studentBeingUpdated.gender}
                     onChange={(e, i, value) => updateGender(value)}
                 >                
                     <MenuItem value={1} primaryText="Female" />
                     <MenuItem value={2} primaryText="Male" />
                 </SelectField>
-                <RaisedButton label="Update Gender"/>
+                <br />
+                <RaisedButton 
+                    label="Save Changes"
+                    onClick={() => {saveStudentChanges(studentBeingUpdated.student_id ,studentBeingUpdated)}}
+                />
             </div>
         )
     }
@@ -78,6 +95,7 @@ class EditStudent extends Component{
 function mapStateToProps(state){
     return{
         currentStudent: state.students.currentStudent,
+        studentBeingUpdated: state.students.studentBeingUpdated,
         updateStudentFirstName: state.students.updateStudentFirstName,
         updateStudentLastName: state.students.updateStudentLastName,
         updateStudentBirthday: state.students.updateStudentBirthday,
@@ -86,4 +104,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {getStudent, updateFirst, updateLast, updateBirthday, updateHistory, updateGender})(EditStudent)
+export default connect(mapStateToProps, {getStudent, mountCurrentToBeUpdated, updateFirst, updateLast, updateBirthday, updateHistory, updateGender, saveStudentChanges})(EditStudent)

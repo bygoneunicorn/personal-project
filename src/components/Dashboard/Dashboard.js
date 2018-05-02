@@ -17,7 +17,6 @@ class Dashboard extends Component{
         this.props.getUser()
     }
     render(){
-        console.log(this.props)
         const {user_id} = this.props.user
         return(
             user_id ? 
