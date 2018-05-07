@@ -23,12 +23,27 @@ module.exports = {
             console.log(err)
         })
     },
+    getUnpaidLessons: (req, res, next) => {
+        const {user_id} = req.params
+        req.app.get('db').get_unpaid_lessons([user_id]).then( lessons => {
+            res.status(200).send(lessons)
+        }).catch((err) => {
+            console.log(err)
+        })
+    },
+    getPaidLessons: (req, res, next) => {
+        const {user_id} = req.params
+        req.app.get('db').get_paid_lessons([user_id]).then( lessons =>{
+            res.status(200).send(lessons)
+        }).catch((err) => {
+            console.log(err)
+        })
+    },
     addLesson: (req, res, next) => {
-        console.log(req.body)
         const {studentIdLessonToAdd, newLessonDate, newLessonTime, newLessonPrice} = req.body
         req.app.get('db').add_lesson([studentIdLessonToAdd, newLessonDate, newLessonTime, newLessonPrice])
             .then( lesson => {
-                res.status(200).send()
+                next(lesson)
             }).catch((err) => {
                 console.log(err)
             })

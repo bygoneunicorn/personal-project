@@ -99,8 +99,13 @@ app.post('/student/add', sc.addStudent);
 app.put('/student/:student_id', sc.updateStudent);
 app.delete('/student/:student_id', sc.deleteStudent);
 
+//lesson information endpoints
 app.get('/lessons/:user_id', lc.getAllLessons)
 app.get('/lesson/:lesson_id', lc.getOneLesson)
 app.get('/lessons/bystudent/:student_id', lc.getLessonByStudent)
 app.post('/lesson/add', lc.addLesson)
 app.delete('/lesson/:lesson_id', lc.deleteLesson)
+
+//payment information endpoints
+app.get('/payments/unpaid/:user_id', lc.getUnpaidLessons)
+app.get('/payments/paid/:user_id', lc.getPaidLessons)

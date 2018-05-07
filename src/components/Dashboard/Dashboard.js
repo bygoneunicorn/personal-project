@@ -9,6 +9,7 @@ import Lessons from './Lessons/Lessons';
 import ViewLesson from './Lessons/ViewLesson';
 import AddLesson from './Lessons/AddLesson';
 import Payments from './Payments/Payments';
+import PaymentHistory from './Payments/PaymentHistory';
 import {getUser} from '../../ducks/user';
 import { connect } from 'react-redux';
 
@@ -36,6 +37,7 @@ class Dashboard extends Component{
                     <Route path={`/dashboard/:user_id/lesson/:lesson_id`} component={ViewLesson} />
                     <Route path={`/dashboard/:user_id/lessons/add`} component={AddLesson} />
                     <Route path={`/dashboard/:user_id/lessons`} component={Lessons} />
+                    <Route path={`/dashboard/:user_id/payment-history`} component={PaymentHistory} />
                     <Route path={`/dashboard/:user_id/payments`} component={Payments} />
                     <Route path='/dashboard' component={User} />
                 </Switch>

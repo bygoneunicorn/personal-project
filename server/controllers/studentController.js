@@ -47,7 +47,7 @@ module.exports = {
             birthday, 
             history, 
             gender
-        } = req.body.studentBeingUpdated
+        } = req.body
         req.app.get('db').update_student([student_id, first_name, last_name, birthday, history, gender]).then( student =>{
             res.status(200).send(student)
         }).catch((err) => {

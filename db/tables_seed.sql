@@ -32,8 +32,10 @@ values(1, '12-12-2020', '1:00PM', 35.00, false);
 create table payments(
     payment_id serial primary key,
     lesson_id integer references lessons.lesson_id,
-    amount decimal(8,2)
+    amount decimal(8,2),
+    paid boolean default false
 );
+
 insert into payments(lesson_id, amount)
 values (1, 35.00);
 
