@@ -18,7 +18,7 @@ class PaymentHistory extends Component{
 
 function mapStateToProps(state){
     return{
-        payments: state.payments.paidPayments,
+        paidPayments: state.payments.paidPayments,
     }
 }
 

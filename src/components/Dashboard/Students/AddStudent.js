@@ -15,7 +15,18 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import IconButton from 'material-ui/IconButton';
 import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
+import areIntlLocalesSupported from 'intl-locales-supported';
 
+let DateTimeFormat;
+
+if (areIntlLocalesSupported(['fr', 'fa-IR'])) {
+  DateTimeFormat = global.Intl.DateTimeFormat;
+} else {
+  const IntlPolyfill = require('intl');
+  DateTimeFormat = IntlPolyfill.DateTimeFormat;
+  require('intl/locale-data/jsonp/fr');
+  require('intl/locale-data/jsonp/fa-IR');
+}
 
 class AddStudent extends Component{
     render(){
@@ -69,6 +80,11 @@ class AddStudent extends Component{
                         onChange={handleBirthday}
                         hideCalendarDate={false}
                         firstDayOfWeek={0}
+                        formatDate={new DateTimeFormat('en-US', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric',
+                          }).format} 
                     />
 
                     <TextField
@@ -105,8 +121,6 @@ class AddStudent extends Component{
                     }
                     />
                     <br />
-                    <input type='date' />
-
             </div>
         )
     }

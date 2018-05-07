@@ -8,6 +8,7 @@ const express = require('express')
     , cors = require('cors')
     , sc = require('./controllers/studentController')
     , lc = require('./controllers/lessonController')
+    , stripe = require('stripe')(process.env.S_STRIPE_KEY)
 
 const app = express();
 
@@ -109,3 +110,16 @@ app.delete('/lesson/:lesson_id', lc.deleteLesson)
 //payment information endpoints
 app.get('/payments/unpaid/:user_id', lc.getUnpaidLessons)
 app.get('/payments/paid/:user_id', lc.getPaidLessons)
+
+//STRIPE
+app.post('/api/charge', function(req, res){
+    const db = app.get('db')
+    console.log(req.body)
+    const charge = stripe.charges.create({
+        amount: req.body.amount,
+        currency: 'usd',
+        source: req.body.token.id,
+        description: 'Example charge'
+      })
+      res.sendStatus(200) // clear out cart here
+ })

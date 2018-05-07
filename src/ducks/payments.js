@@ -2,11 +2,13 @@ import axios from 'axios';
 
 const initialState = {
     unpaidPayments: [],
-    paidPayments: []
+    paidPayments: [],
+    readyForCheckout: []
 }
 
 const GET_ALL_UNPAID_LESSONS = 'GET_ALL_UNPAID_LESSONS';
 const GET_ALL_PAID_LESSONS = 'GET_ALL_PAID_LESSONS';
+const ADD_TO_CHECKOUT = 'ADD_TO_CHECKOUT';
 
 export function getUnpaidLessons(user_id){
     let unpaidLessonData = axios.get(`/payments/unpaid/${user_id}`).then( res=> {
@@ -26,6 +28,14 @@ export function getPaidLessons(user_id){
         payload: paidLessonData
     }
 }
+export function addToCheckout(lesson, index){
+    var temp = [lesson]
+    return{
+        type: ADD_TO_CHECKOUT,
+        payload: temp,
+        index: index
+    }
+}
 
 export default function paymentsReducer( state = initialState, action){
     switch (action.type) {
@@ -33,6 +43,12 @@ export default function paymentsReducer( state = initialState, action){
             return Object.assign({}, state, {unpaidPayments: [...action.payload]})
         case GET_ALL_PAID_LESSONS + '_FULFILLED':   
             return Object.assign({}, state, {paidPayments: [...action.payload]})
+        case ADD_TO_CHECKOUT:
+            return Object.assign(
+                {}, 
+                state, 
+                {readyForCheckout: [...action.payload, ...state.readyForCheckout]},
+                {unpaidPayments: [...state.unpaidPayments.slice(0, action.index),...state.unpaidPayments.slice(action.index+1)]})
         default:
             return state;
     }
