@@ -38,7 +38,7 @@ class ViewStudent extends Component{
                         <div>
                             <h3>Lessons Display here</h3>
                             {lessonsList}
-                            <Link to='/'><div>Add a Lesson</div></Link>
+                            <Link to={`/dashboard/${user_id}/lessons/add`}><div>Add a Lesson</div></Link>
                             
                         </div>
             </div>

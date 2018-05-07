@@ -32,5 +32,14 @@ module.exports = {
             }).catch((err) => {
                 console.log(err)
             })
+    },
+    deleteLesson: (req, res, next) => {
+        const {lesson_id} = req.params
+        req.app.get('db').delete_lesson([lesson_id])
+            .then( () => {
+                res.sendStatus(200)
+            }).catch((err) => {
+                console.log(err)
+            })
     }
 }

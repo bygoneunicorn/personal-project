@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <HashRouter>
-        <div>
+        <div className='App'>
           <Nav />
           <Switch>
             <Route path="/contact" component={Contact}/>

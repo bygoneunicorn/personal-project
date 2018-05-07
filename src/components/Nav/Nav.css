@@ -1,4 +1,19 @@
 .main-nav{
     display: flex;
-    justify-content: space-between
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.drawer-overlay{
+    background-color: blue;
+}
+.drawer-root{
+    background-color: #00000033;
+}
+.drawer-container{
+    background-color: blue;
+}
+.logo{
+    margin-top: 10px;
+    width: 30px;
+    border-radius: 50%;
 }

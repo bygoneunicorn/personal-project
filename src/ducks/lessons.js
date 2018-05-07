@@ -18,6 +18,7 @@ const NEW_LESSON_DATE = 'NEW_LESSON_DATE';
 const NEW_LESSON_TIME = 'NEW_LESSON_TIME';
 const NEW_LESSON_PRICE = 'NEW_LESSON_PRICE';
 const NEW_LESSON_ADD = 'NEW_LESSON_ADD';
+const DELETE_LESSON = 'DELETE_LESSON';
 
 export function getLessons(user_id){
     let lessonData = axios.get(`/lessons/${user_id}`).then( res=> {
@@ -84,13 +85,22 @@ export function addLesson(studentIdLessonToAdd, newLessonDate, newLessonTime, ne
         type: NEW_LESSON_ADD,
     }
 }
+export function deleteLesson(lesson_id){
+    axios.delete(`/lesson/${lesson_id}`)
+        .then( res => {
+            return null
+        })
+        return{
+            type: DELETE_LESSON
+        }
+}
 
 export default function lessonsReducer( state = initialState, action){
     switch(action.type){
         case GET_ALL_LESSONS + '_FULFILLED':
             return Object.assign({}, state, {lessons: [...action.payload]})
         case GET_ONE_LESSON + '_FULFILLED':
-            return Object.assign({}, state, {currentLesson: action.payload})
+            return Object.assign({}, state, {currentLesson: action.payload[0]})
         case GET_LESSONS_BY_STUDENT + '_FULFILLED':
             return Object.assign({}, state, {currentStudentLessons: action.payload})
         case HANDLE_STUDENT_SELECT:
@@ -108,6 +118,8 @@ export default function lessonsReducer( state = initialState, action){
                 newLessonTime: {},
                 newLessonPrice: null,
             })
+        case DELETE_LESSON:
+            return Object.assign({}, state, {currentLesson: {}})
         default:
             return state;
     }

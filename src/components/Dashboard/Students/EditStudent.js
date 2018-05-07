@@ -30,8 +30,6 @@ class EditStudent extends Component{
         const {
             currentStudent,
             studentBeingUpdated,
-            updateStudentBirthday,
-            updateStudentGender,
             updateFirst,
             updateLast,
             updateBirthday,
