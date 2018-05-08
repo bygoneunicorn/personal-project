@@ -1,0 +1,7 @@
+.student-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.student-item{
+    width: 25%;
+}

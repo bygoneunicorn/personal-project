@@ -4,6 +4,7 @@ export default function Home(){
     return(
         <div>
             <h1>Home component here</h1>
+            
         </div>
     )
 }

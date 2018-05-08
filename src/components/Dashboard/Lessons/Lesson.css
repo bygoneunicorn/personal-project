@@ -1,0 +1,7 @@
+.lesson-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.lesson-item{
+    width: 25%;
+}

@@ -80,7 +80,7 @@ class Nav extends Component{
                             (this.props.user.user_id) ? 
                         (
                         <div>
-                            <img className='logo' src={this.props.user.img} alt='Profile' />
+                            {/* <img className='logo' src={this.props.user.img} alt='Profile' /> */}
                             <FlatButton 
                                 label="Logout"
                                 href="http://localhost:4050/logout"                        

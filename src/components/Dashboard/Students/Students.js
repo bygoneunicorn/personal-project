@@ -3,6 +3,11 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getStudents} from '../../../ducks/students';
 
+import RaisedButton from 'material-ui/RaisedButton';
+
+import './Student.css';
+
+
 class Students extends Component{
     componentDidMount(){
         const user_id = this.props.user.user_id
@@ -13,7 +18,7 @@ class Students extends Component{
         const {user_id} = this.props.user
         let studentList = this.props.students.students.map(student => {
             return(
-                <div key={student.student_id}>
+                <div key={student.student_id} className='student-item'>
                     <Link to={`/dashboard/${user_id}/student/${student.student_id}`}>
                         <h4>{student.first_name} {student.last_name}</h4>
                     </Link>
@@ -28,9 +33,11 @@ class Students extends Component{
                 {/* <Link to='/dashboard/students/1'><button>View Student 1</button></Link>
                 <Link to='/dashboard/students/2'><button>View Student 2</button></Link>
                 This component will render a list of students according to how many students there on for the given user on the db. they're not gonna be hard coded in like they are now */}
-                {studentList}
+                <div className='student-list'>
+                    {studentList}
+                </div>
                 <br/>
-                <Link to={`/dashboard/${user_id}/students/add`}><button>Add Student</button></Link>
+                <Link to={`/dashboard/${user_id}/students/add`}><RaisedButton>Add Student</RaisedButton></Link>
             </div>
         )
     }

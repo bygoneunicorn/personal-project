@@ -1,0 +1,11 @@
+.dashboard-route-button{
+    margin: 10px;
+}
+.dashboard-main{
+    height: 100vh;
+}
+.user-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

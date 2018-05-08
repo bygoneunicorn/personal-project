@@ -13,6 +13,10 @@ import PaymentHistory from './Payments/PaymentHistory';
 import {getUser} from '../../ducks/user';
 import { connect } from 'react-redux';
 
+import RaisedButton from 'material-ui/RaisedButton';
+
+import './Dashboard.css';
+
 class Dashboard extends Component{
     componentDidMount(){
         this.props.getUser()
@@ -22,12 +26,12 @@ class Dashboard extends Component{
         return(
             user_id ? 
             (
-            <div>
+            <div className='dashboard-main'>
                 <nav>
-                    <Link to={`/dashboard/${user_id}`}><button>User</button></Link>
-                    <Link to={`/dashboard/${user_id}/students`}><button>Students</button></Link>
-                    <Link to={`/dashboard/${user_id}/lessons`}><button>Lessons</button></Link>
-                    <Link to={`/dashboard/${user_id}/payments`}><button>Payments</button></Link>
+                    <Link to={`/dashboard/${user_id}`} className='dashboard-route-button'><RaisedButton>User</RaisedButton></Link>
+                    <Link to={`/dashboard/${user_id}/students`} className='dashboard-route-button'><RaisedButton>Students</RaisedButton></Link>
+                    <Link to={`/dashboard/${user_id}/lessons`} className='dashboard-route-button'><RaisedButton>Lessons</RaisedButton></Link>
+                    <Link to={`/dashboard/${user_id}/payments`} className='dashboard-route-button'><RaisedButton>Payments</RaisedButton></Link>
                 </nav>
                 <Switch>
                     <Route path={`/dashboard/:user_id/student/edit/:student_id`} component={EditStudent}/>

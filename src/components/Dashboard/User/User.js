@@ -5,18 +5,11 @@ import { connect } from 'react-redux';
 class User extends Component{
     render(){
         return(
-            <div>                
-            {
-                this.props.user.display_name ? 
-                (
-                    <div>                            
-                        <p>Account Holder: {this.props.user.display_name}</p>
-                        <p>Email: {this.props.user.email}</p>
-                        <img src={this.props.user.img} alt='Profile'/>
-                    </div>
-                ) :
-                <p>Please Log In</p>
-            }
+            <div className='user-main'>                            
+                {/* <p>Account Holder: {this.props.user.display_name}</p>
+                <p>Email: {this.props.user.email}</p>
+                <img src={this.props.user.img} alt='Profile'/> */}
+                <h2>Welcome to Yazzie Music {this.props.user.display_name}!</h2>
             </div>
         )
     }
