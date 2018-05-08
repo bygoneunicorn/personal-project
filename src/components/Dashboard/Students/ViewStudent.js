@@ -4,6 +4,8 @@ import {getStudent, deleteStudent} from '../../../ducks/students';
 import {getLessonsByStudent} from '../../../ducks/lessons';
 import {Link} from 'react-router-dom';
 
+import RaisedButton from 'material-ui/RaisedButton';
+
 class ViewStudent extends Component{
     componentDidMount(){
         const {getStudent, getLessonsByStudent} = this.props
@@ -14,12 +16,14 @@ class ViewStudent extends Component{
     
     render(){
         console.log(this.props)
-        const { student_id, first_name, last_name, birthday, grade, history, gender } = this.props.currentStudent
+        const { student_id, first_name, last_name, birthday} = this.props.currentStudent
         const { user_id } = this.props.match.params;
         let lessonsList = this.props.currentStudentLessons.map(( lesson => {
             return(
                 <div key={lesson.lesson_id}>
-                    <h4>{lesson.date_of_lesson} {lesson.time_of_lesson} Price: ${lesson.price}</h4>
+                    <Link to={`/dashboard/${user_id}/lesson/${lesson.lesson_id}`}> 
+                        <h4>{lesson.date_of_lesson} {lesson.time_of_lesson} Price: ${lesson.price}</h4>
+                    </Link>
                 </div>
             )
         }))
@@ -27,13 +31,10 @@ class ViewStudent extends Component{
         return(
             <div>
                         <div>
-                            <p>{first_name} {last_name}</p>
+                            <h3>{first_name} {last_name}</h3>
                             <p>{birthday}</p>
-                            <p>{grade}</p>
-                            <p>{history}</p>
-                            <p>{gender}</p>
-                            <Link to={`/dashboard/${user_id}/student/edit/${student_id}`}><button>Edit</button></Link>
-                            <Link to={`/dashboard/${user_id}/students`}><button onClick={() => deleteStudent(student_id)}>Delete</button></Link>
+                            <Link to={`/dashboard/${user_id}/student/edit/${student_id}`}><RaisedButton>Edit</RaisedButton></Link>
+                            <Link to={`/dashboard/${user_id}/students`}><RaisedButton onClick={() => deleteStudent(student_id)}>Delete</RaisedButton></Link>
                         </div>
                         <div>
                             <h3>Lessons Display here</h3>

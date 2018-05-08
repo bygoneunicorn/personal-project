@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {getPaidLessons} from '../../../ducks/payments';
 
 class PaymentHistory extends Component{
-    componentDidMount(){
-        this.props.getPaidLessons(this.props.match.params.user_id)
-    }
     render(){
         console.log(this.props)
         return(
@@ -22,4 +18,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {getPaidLessons})(PaymentHistory)
+export default connect(mapStateToProps)(PaymentHistory)

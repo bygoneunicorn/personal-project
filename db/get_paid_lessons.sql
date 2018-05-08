@@ -2,5 +2,5 @@ select lesson_id, lessons.student_id as student_id, time_of_lesson, date_of_less
 from lessons
 join students 
 on lessons.student_id = students.student_id
-where paid = true
-and user_id = 1;
+where paid = "paid"
+and user_id = $1;
