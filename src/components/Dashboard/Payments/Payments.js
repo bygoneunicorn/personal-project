@@ -18,6 +18,7 @@ class Payments extends Component{
         for(let i=0; i< tempCheckout.length; i++){
             total += +tempCheckout[i].price
         }
+
         const unpaidList = this.props.payments.filter( e => {
             return e.paid === 'unpaid'
         }).map( (e, i) => {
@@ -27,6 +28,8 @@ class Payments extends Component{
                 </div>
             )
         })
+
+
         const checkoutList = this.props.payments.filter( e => {
             return e.paid === 'pending'
         }).map( (e, i) => {
@@ -43,7 +46,7 @@ class Payments extends Component{
                     To remove any item from your cart click on it. Click the Pay With Card button when finished
                 </p>
                 <div className='half-width-container'>
-                    <h2>Pending Payments</h2>                         
+                    <h2>Payments Due</h2>                         
                     <div className='list-container'>
                         <div className='unpaid-payment-list'>
                             {unpaidList}
@@ -59,7 +62,7 @@ class Payments extends Component{
                     </div>
                 </div>
                     <h2>Total: {total}</h2>
-                <CheckOut total = {total} className='checkOut'/>
+                <CheckOut amount = {total * 100} className='checkOut'/>
                 <Link to={`/dashboard/${this.props.match.params.user_id}/payment-history`}>Payment History</Link>
             </div>
         )

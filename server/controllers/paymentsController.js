@@ -24,5 +24,15 @@ module.exports = {
         }).catch((err) => {
             console.log(err)
         })
+    },
+    completePayment: (req, res) => {
+        console.log(req)
+        const {user_id} = req.params
+
+        req.app.get('db').complete_payment([user_id]).then( payments => {
+            res.status(200).send(payments)
+        }).catch((err) => {
+            console.log(err)
+        })
     }
 }

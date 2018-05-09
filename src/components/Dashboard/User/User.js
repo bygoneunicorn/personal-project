@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { getUser } from '../../../ducks/user';
 import { connect } from 'react-redux';
 
 class User extends Component{
@@ -21,4 +20,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {getUser})(User)
+export default connect(mapStateToProps)(User)

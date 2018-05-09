@@ -1,27 +1,28 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
 import StripeCheckout from 'react-stripe-checkout';
+import {completePayment} from '../../../ducks/payments';
+
 
 class Checkout extends Component{
-
-   onToken = (token) => {
-       token.card = void 0;  // not storing card information
-       console.log(this.props.total)
-       axios.post('/api/charge', {token, amount: this.props.total}).then(res => {
-           console.log("woopiieeee")
-       }).catch( err => console.log(err))
-   }
-
    render(){
+       const {user_id} = this.props.user
    return(
        <div>
            <StripeCheckout
-               token = {this.onToken}
+               token = {() => this.props.completePayment(user_id)}
                stripeKey = {process.env.REACT_APP_STRIPE_KEY}
-               amount = {this.props.amount}/>
+               amount = {this.props.amount}
+               />
        </div>
    )
 }
 }
+function mapStateToProps(state){
+    return{
+        user: state.user.user
+    }
+}
 
-export default Checkout;
+export default connect(mapStateToProps, {completePayment})(Checkout);

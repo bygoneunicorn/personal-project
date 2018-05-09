@@ -111,6 +111,7 @@ app.delete('/lesson/:lesson_id', lc.deleteLesson)
 app.get('/payments/:user_id', pc.getPaymentLessons)
 app.put('/payments/checkout/:lesson_id', pc.addToCheckout)
 app.put('/payments/checkout/remove/:lesson_id', pc.removeFromCheckout)
+app.put('/payments/checkout/complete/:user_id', pc.completePayment)
 
 //STRIPE
 app.post('/api/charge', function(req, res){
