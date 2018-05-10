@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import Drawer from 'material-ui/Drawer';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -65,19 +66,21 @@ class Nav extends Component{
                         <div className='login-button'>
                             <FlatButton 
                                 label="Logout"
-                                href={process.env.REACT_APP_LOGOUT}                        
+                                // onClick={() => axios.get('/logout').then( res => {
+                                //     console.log('Logged Out')
+                                // })} 
+                                href={process.env.REACT_APP_LOGOUT}                       
                             />
                         </div>
                         ):
                         <div className='login-button'>
                             <FlatButton 
                                 label="Login/Signup"
+                                // onClick={()=> axios.get('/auth').then( res => {
+                                //     console.log('Logged In')
+                                // })}
                                 href={process.env.REACT_APP_LOGIN}
-                                // style={{
-                                //     color: '#000000'
-                                // }}
                             />
-                            {/* <a href={process.env.REACT_APP_LOGIN}>Login/Signup</a> */}
                         </div>
                         }
             </div>
