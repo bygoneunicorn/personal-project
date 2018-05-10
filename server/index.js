@@ -27,9 +27,11 @@ massive(CONNECTION_STRING).then( db =>{
     app.set('db', db);
     app.listen(SERVER_PORT, () => console.log(`Hear the beautiful music on port ${SERVER_PORT}`))
 });
+app.use(express.static(__dirname + '/../build'))
 
 app.use( bodyParser.json())
 app.use( cors() )
+
 
 app.use( session({
     secret: SESSION_SECRET,
@@ -74,8 +76,10 @@ passport.deserializeUser((user_id, done) => {
 })
 app.get('/auth', passport.authenticate('auth0'))
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: `http://localhost:3000/#/dashboard`,
-    failureRedirect: 'http://localhost:3000/#/'
+    successRedirect: process.env.SUCCESS_REDIRECT,
+    failureRedirect: process.env.FAILURE_REDIRECT
+    //successRedirect: 'http://localhost:3000/#/dashboard',
+    //failureRedirect: 'http://localhost:3000/#/'
 }))
 
 app.get('/auth/me', function(req,res) {
@@ -87,7 +91,8 @@ app.get('/auth/me', function(req,res) {
 })
 app.get('/logout', function(req, res) {
     req.logOut();
-    res.redirect('http://localhost:3000')
+    res.redirect(process.env.FAILURE_REDIRECT)
+    // res.redirect('http://localhost:3000/#/')
 })
 
 // user information endpoints

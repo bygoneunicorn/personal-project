@@ -63,16 +63,10 @@ class Nav extends Component{
                             (this.props.user.user_id) ? 
                         (
                         <div className='login-button'>
-                            {/* <img className='logo' src={this.props.user.img} alt='Profile' /> */}
                             <FlatButton 
                                 label="Logout"
-                                href="http://localhost:4050/logout"                        
+                                href={process.env.REACT_APP_LOGOUT}                        
                             />
-                            {/* <a href="http://localhost:4050/logout">
-                                <button>Logout</button> 
-                            </a>
-                            <br />
-                            <Link to="/dashboard/">To Dashboard Home</Link> */}
                         </div>
                         ):
                         <div className='login-button'>

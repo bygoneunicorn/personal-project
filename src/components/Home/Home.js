@@ -3,8 +3,9 @@ import React from 'react';
 export default function Home(){
     return(
         <div>
-            <h1>Home component here</h1>
-            
+            <div>
+                <h1>Welcome to Yazzie Music</h1>
+            </div>
         </div>
     )
 }
