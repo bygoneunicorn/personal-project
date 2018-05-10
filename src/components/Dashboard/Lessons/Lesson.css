@@ -1,7 +1,4 @@
 .lesson-list{
-    display: flex;
-    flex-wrap: wrap;
-}
-.lesson-item{
-    width: 25%;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
 }

@@ -1,7 +1,7 @@
 .main-nav{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    text-align: center;
 }
 .drawer-overlay{
     background-color: blue;
@@ -13,7 +13,20 @@
     background-color: blue;
 }
 .logo{
-    margin-top: 10px;
-    width: 30px;
-    border-radius: 50%;
+    max-width: 450px;
 }
+
+@media(max-width: 650px){
+    .main-nav{
+        grid-template-columns: 50% 50%;
+    }
+    .logo{
+        width: 100%;
+        height: auto;
+    }
+    .logo-container{
+        width: 100%;
+        grid-area: 1 / 1 / 2 / 3;
+        order: -1
+    }
+}   

@@ -7,6 +7,8 @@ import TimePicker from 'material-ui/TimePicker';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 class ViewLesson extends Component{
     constructor(){
@@ -27,14 +29,15 @@ class ViewLesson extends Component{
     render(){
         const {user_id} = this.props.match.params
         const {first_name, last_name, date_of_lesson, time_of_lesson, price, lesson_id} = this.props.currentLesson
+
         return(
             !this.state.editable ? 
             (
             <div>
                 <h2>{first_name} {last_name}</h2>
-                <p>Date: {date_of_lesson}</p>
-                <p>Time: {time_of_lesson}</p>
-                <p>Price: {price}</p>
+                <Moment format="YYYY/MM/DD" date={date_of_lesson} />
+                <Moment format=" HH:mm" date={time_of_lesson} />
+                <p>Price: ${price}</p>
                 <RaisedButton onClick={()=> this.handleEditChange()}>Reschedule</RaisedButton>
                 <RaisedButton href={`/#/dashboard/${user_id}/lessons`} onClick={() => deleteLesson(lesson_id)}>Delete</RaisedButton>
             
@@ -61,6 +64,7 @@ class ViewLesson extends Component{
                     <MenuItem label={'45 minutes'} value={45} primaryText={'45 minutes'}/>
                     <MenuItem label={'1 hour'} value={60} primaryText={'1 hour'}/>                      
                 </SelectField>
+                <br />
                 <RaisedButton onClick={()=> this.handleEditChange()}>Cancel</RaisedButton>
             </div>
             

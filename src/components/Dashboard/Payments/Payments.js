@@ -40,30 +40,26 @@ class Payments extends Component{
             )
         })
         return(
-            <div>
-                <p>This page shows all the unpaid lessons on your account: 
+            <div className='payment-main-container'>
+                <p className='full-width-grid'>This page shows all the unpaid lessons on your account: 
                     Click on any item on the left to move it to the checkout cart on the right.
-                    To remove any item from your cart click on it. Click the Pay With Card button when finished
+                    To remove any item from your cart click on it. Select "Pay With Card" when ready to pay.
                 </p>
-                <div className='half-width-container'>
+                <div>
                     <h2>Payments Due</h2>                         
                     <div className='list-container'>
-                        <div className='unpaid-payment-list'>
-                            {unpaidList}
-                        </div>
+                        {unpaidList}
                     </div>
                 </div>
-                <div className='half-width-container'>
+                <div>
                     <h2>Cart</h2>
                     <div className='list-container'>
-                        <div className='unpaid-payment-list'>
-                            {checkoutList}
-                        </div>
+                        {checkoutList}
                     </div>
                 </div>
-                    <h2>Total: {total}</h2>
-                <CheckOut amount = {total * 100} className='checkOut'/>
-                <Link to={`/dashboard/${this.props.match.params.user_id}/payment-history`}>Payment History</Link>
+                <h2 className='full-width-grid' >Total: {total}</h2>
+                <div  className='full-width-grid'><CheckOut amount = {total * 100}/></div>
+                <Link className='full-width-grid' to={`/dashboard/${this.props.match.params.user_id}/payment-history`}>Payment History</Link>
             </div>
         )
     }

@@ -25,32 +25,14 @@ class Nav extends Component{
     render(){
         return(
             <div className='main-nav'>
-                    {/* <IconMenu
-                            style={{
-                                marginLeft: '-10px',
-                            }}
-                            menuStyle={{
-                                width: '200px',
-                            }}
-                            iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-                            anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-                            targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                            // open={this.state.openMenu}
-
-                        >
-                            <MenuItem primaryText="Home" containerElement={<Link to="/"></Link>}/>
-                            <MenuItem primaryText="Contact" containerElement={<Link to="/contact"></Link>}/>
-                            <MenuItem primaryText="About" containerElement={<Link to="/about"></Link>}/>
-                            <MenuItem primaryText="Resources" containerElement={<Link to="/resources"></Link>}/>
-
-                    </IconMenu> */}
+                <div className='menu-button-container'> 
                     <FlatButton
                         label="Menu"
                         onClick={this.handleToggle}
                     />
                     <Drawer
                         docked={false}
-                        width={'25%'}
+                        width={250}
                         open={this.state.open}
                         onRequestChange={(open) => this.setState({open})}
                         overlayClassName='drawer-overlay'
@@ -73,13 +55,14 @@ class Nav extends Component{
                             <MenuItem onClick={this.handleClose} primaryText="About" containerElement={<Link to="/about"></Link>}/>
                             <MenuItem onClick={this.handleClose} primaryText="Resources" containerElement={<Link to="/resources"></Link>}/>
                     </Drawer>
-                    <img src='http://via.placeholder.com/450x100' alt='Logo'/>
-                    <div></div>
-
+                </div>
+                    <div className='logo-container'>
+                        <img src='http://via.placeholder.com/450x100' alt='Logo' className='logo'/>
+                    </div>
                         {
                             (this.props.user.user_id) ? 
                         (
-                        <div>
+                        <div className='login-button'>
                             {/* <img className='logo' src={this.props.user.img} alt='Profile' /> */}
                             <FlatButton 
                                 label="Logout"
@@ -92,7 +75,7 @@ class Nav extends Component{
                             <Link to="/dashboard/">To Dashboard Home</Link> */}
                         </div>
                         ):
-                        <div>
+                        <div className='login-button'>
                             <FlatButton 
                                 label="Login/Signup"
                                 href={process.env.REACT_APP_LOGIN}

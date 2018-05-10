@@ -1,11 +1,16 @@
 .dashboard-route-button{
-    margin: 10px;
+    background-color: #c5c1c000 !important;
+    transition: background-color 2s !important;
+    
+}
+.dashboard-route-button:hover{
+    background-color: #f7ce3e !important;
 }
 .dashboard-main{
-    height: 100vh;
+    height: 100%;
 }
-.user-main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.dashboard-nav{
+    display: grid;
+    /* grid-template-columns: 50% 50%; */
+    grid-template-columns: 25% 25% 25% 25%;
 }

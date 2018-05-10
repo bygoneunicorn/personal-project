@@ -1,7 +1,5 @@
 .student-list{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
 }
-.student-item{
-    width: 25%;
-}
+
