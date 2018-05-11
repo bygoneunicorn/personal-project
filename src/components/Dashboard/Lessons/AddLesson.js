@@ -1,25 +1,25 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import DatePicker from 'material-ui/DatePicker';
-import TimePicker from 'material-ui/TimePicker';
+import DateTimePicker from 'material-ui-datetimepicker';
+import DatePickerDialog from 'material-ui/DatePicker/DatePickerDialog'
+import TimePickerDialog from 'material-ui/TimePicker/TimePickerDialog';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import {getStudents} from '../../../ducks/students';
-import {handleStudentSelect, handleNewLessonDate, handleNewLessonTime, handleNewLessonPrice, addLesson} from '../../../ducks/lessons';
-import areIntlLocalesSupported from 'intl-locales-supported';
+import {handleStudentSelect, handleNewLessonDate, handleNewLessonPrice, addLesson} from '../../../ducks/lessons';
+// import areIntlLocalesSupported from 'intl-locales-supported';
 
+// let DateTimeFormat;
 
-let DateTimeFormat;
-
-if (areIntlLocalesSupported(['fr', 'fa-IR'])) {
-  DateTimeFormat = global.Intl.DateTimeFormat;
-} else {
-  const IntlPolyfill = require('intl');
-  DateTimeFormat = IntlPolyfill.DateTimeFormat;
-  require('intl/locale-data/jsonp/fr');
-  require('intl/locale-data/jsonp/fa-IR');
-}
+// if (areIntlLocalesSupported(['fr', 'fa-IR'])) {
+//   DateTimeFormat = global.Intl.DateTimeFormat;
+// } else {
+//   const IntlPolyfill = require('intl');
+//   DateTimeFormat = IntlPolyfill.DateTimeFormat;
+//   require('intl/locale-data/jsonp/fr');
+//   require('intl/locale-data/jsonp/fa-IR');
+// }
 
 class AddLesson extends Component{
     componentDidMount(){
@@ -31,11 +31,9 @@ class AddLesson extends Component{
         const {
             studentIdLessonToAdd,
             newLessonDate, 
-            newLessonTime,
             newLessonPrice,
             handleStudentSelect,
-            handleNewLessonDate,
-            handleNewLessonTime,
+            handleNewLessonDate,        
             handleNewLessonPrice,
             addLesson
         } = this.props
@@ -53,7 +51,7 @@ class AddLesson extends Component{
                 >
                     {studentSelection}
                 </SelectField>
-                <DatePicker 
+                {/* <DatePicker 
                     hintText="Schedule a day" 
                     mode="landscape" 
                     value={newLessonDate}
@@ -63,11 +61,16 @@ class AddLesson extends Component{
                         year: 'numeric',
                       }).format}                
                     onChange={handleNewLessonDate}
-                />
-                <TimePicker
-                    hintText="Schedule a time"
-                    value={newLessonTime}
-                    onChange={handleNewLessonTime}
+                /> */}
+                <DateTimePicker
+                    hintText="Schedule a day and time"
+                    clearIcon={null}
+                    onChange={(dateTime) => handleNewLessonDate(dateTime)}
+                    DatePicker={DatePickerDialog}
+                    datePickerMode='landscape'
+                    TimePicker={TimePickerDialog}
+                    returnMomentDate={true}
+                    firstDayOfWeek={0}
                     minutesStep={15}
                 />
                 <SelectField
@@ -85,7 +88,6 @@ class AddLesson extends Component{
                 onClick={() => {addLesson(
                     studentIdLessonToAdd,         
                     newLessonDate, 
-                    newLessonTime,
                     newLessonPrice,
                 )}}
                 
@@ -98,11 +100,10 @@ class AddLesson extends Component{
 function mapStateToProps(state){
     return {
         newLessonDate: state.lessons.newLessonDate,
-        newLessonTime: state.lessons.newLessonTime,
         newLessonPrice: state.lessons.newLessonPrice,
         studentIdLessonToAdd: state.lessons.studentIdLessonToAdd,
         students: state.students.students,
     }
 }
 
-export default connect(mapStateToProps, {getStudents, handleStudentSelect, handleNewLessonDate, handleNewLessonTime, handleNewLessonPrice, addLesson})(AddLesson)
+export default connect(mapStateToProps, {getStudents, handleStudentSelect, handleNewLessonDate, handleNewLessonPrice, addLesson})(AddLesson)

@@ -24,8 +24,9 @@ module.exports = {
         })
     },
     addLesson: (req, res, next) => {
-        const {studentIdLessonToAdd, newLessonDate, newLessonTime, newLessonPrice} = req.body
-        req.app.get('db').add_lesson([studentIdLessonToAdd, newLessonDate, newLessonTime, newLessonPrice])
+        console.log(req.body)
+        const {studentIdLessonToAdd, newLessonDate, newLessonPrice} = req.body
+        req.app.get('db').add_lesson([studentIdLessonToAdd, newLessonDate, newLessonPrice])
             .then( lesson => {
                 next(lesson)
             }).catch((err) => {

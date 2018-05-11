@@ -28,10 +28,10 @@ class Dashboard extends Component{
             (
             <div className='dashboard-main'>
                 <nav className='dashboard-nav'>
-                    <Link to={`/dashboard/${user_id}`}><FlatButton className='dashboard-route-button'>User</FlatButton></Link>
-                    <Link to={`/dashboard/${user_id}/students`}><FlatButton className='dashboard-route-button'>Students</FlatButton></Link>
-                    <Link to={`/dashboard/${user_id}/lessons`}><FlatButton className='dashboard-route-button'>Lessons</FlatButton></Link>
-                    <Link to={`/dashboard/${user_id}/payments`}><FlatButton className='dashboard-route-button'>Payments</FlatButton></Link>
+                    <FlatButton fullwidth='true' className='dashboard-route-button'><Link to={`/dashboard/${user_id}`} style={{display: 'block', height: '100%'}}>User</Link></FlatButton>
+                    <FlatButton fullwidth='true' className='dashboard-route-button'><Link to={`/dashboard/${user_id}/students`} style={{display: 'block', height: '100%'}}>Students</Link></FlatButton>
+                    <FlatButton fullwidth='true' className='dashboard-route-button'><Link to={`/dashboard/${user_id}/lessons`} style={{display: 'block', height: '100%'}}>Lessons</Link></FlatButton>
+                    <FlatButton fullwidth='true' className='dashboard-route-button'><Link to={`/dashboard/${user_id}/payments`} style={{display: 'block', height: '100%'}}>Payments</Link></FlatButton>
                 </nav>
                 <Switch>
                     <Route path={`/dashboard/:user_id/student/edit/:student_id`} component={EditStudent}/>

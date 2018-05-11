@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {getLessons} from '../../../ducks/lessons';
 
 import RaisedButton from 'material-ui/RaisedButton';
+import Moment from 'react-moment';
 
 import './Lesson.css';
 
@@ -19,14 +20,14 @@ class Lessons extends Component{
             return(
                 <div key={lesson.lesson_id} className='lesson-item'>
                     <Link to={`/dashboard/${user_id}/lesson/${lesson.lesson_id}`}>
-                        <h4>{lesson.first_name} {lesson.last_name} {lesson.price}</h4>
+                        <h4>{lesson.first_name} {lesson.last_name}</h4>
+                        <p><Moment format="MMM D YYYY" date={lesson.date_of_lesson} /> <Moment  format="hh:mm a" date={lesson.date_of_lesson} /></p>
                     </Link>
                 </div>
             )
         })
         return(
             <div>
-                <h2>Lesson Component goes here</h2>
                 <div className='lesson-list'>
                     {lessonList}
                 </div>

@@ -1,12 +1,7 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import Drawer from 'material-ui/Drawer';
-import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import IconButton from 'material-ui/IconButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {logOut} from '../../ducks/user';

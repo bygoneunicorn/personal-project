@@ -6,7 +6,6 @@ const initialState = {
     currentStudentLessons: [],
     studentIdLessonToAdd: null,
     newLessonDate: {},
-    newLessonTime: {},
     newLessonPrice: null,
 }
 
@@ -15,7 +14,6 @@ const GET_ONE_LESSON = 'GET_ONE_LESSON';
 const GET_LESSONS_BY_STUDENT = 'GET_LESSONS_BY_STUDENT';
 const HANDLE_STUDENT_SELECT = 'HANDLE_STUDENT_SELECT';
 const NEW_LESSON_DATE = 'NEW_LESSON_DATE';
-const NEW_LESSON_TIME = 'NEW_LESSON_TIME';
 const NEW_LESSON_PRICE = 'NEW_LESSON_PRICE';
 const NEW_LESSON_ADD = 'NEW_LESSON_ADD';
 const DELETE_LESSON = 'DELETE_LESSON';
@@ -53,16 +51,10 @@ export function handleStudentSelect(student_id){
         payload: student_id
     }
 }
-export function handleNewLessonDate(event, date){
+export function handleNewLessonDate(date){
     return{
         type: NEW_LESSON_DATE,
-        payload: date
-    }
-}
-export function handleNewLessonTime(event, time){
-    return{
-        type: NEW_LESSON_TIME,
-        payload: time
+        payload: date._d
     }
 }
 export function handleNewLessonPrice(price){
@@ -71,11 +63,10 @@ export function handleNewLessonPrice(price){
         payload: price
     }
 }
-export function addLesson(studentIdLessonToAdd, newLessonDate, newLessonTime, newLessonPrice){
+export function addLesson(studentIdLessonToAdd, newLessonDate, newLessonPrice){
     axios.post('/lesson/add', {
         studentIdLessonToAdd,         
         newLessonDate, 
-        newLessonTime,
         newLessonPrice,
     })
     .then(res =>{
@@ -107,15 +98,12 @@ export default function lessonsReducer( state = initialState, action){
             return Object.assign({}, state, {studentIdLessonToAdd: action.payload})
         case NEW_LESSON_DATE:
             return Object.assign({}, state, {newLessonDate: action.payload})
-        case NEW_LESSON_TIME:
-            return Object.assign({}, state, {newLessonTime: action.payload})
         case NEW_LESSON_PRICE:
             return Object.assign({}, state, {newLessonPrice: action.payload})
         case NEW_LESSON_ADD: 
             return Object.assign({}, state, {
                 studentIdLessonToAdd: null,
                 newLessonDate: {},
-                newLessonTime: {},
                 newLessonPrice: null,
             })
         case DELETE_LESSON:

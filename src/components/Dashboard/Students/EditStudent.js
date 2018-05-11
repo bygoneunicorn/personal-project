@@ -10,6 +10,8 @@ import {
     updateGender,
     saveStudentChanges
 } from '../../../ducks/students';
+
+import {Link} from 'react-router-dom';
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
@@ -82,10 +84,9 @@ class EditStudent extends Component{
                     <MenuItem value={2} primaryText="Male" />
                 </SelectField>
                 <br />
-                <RaisedButton 
-                    label="Save Changes"
-                    onClick={() => {saveStudentChanges(studentBeingUpdated.student_id ,studentBeingUpdated)}}
-                />
+                <RaisedButton onClick={() => {saveStudentChanges(studentBeingUpdated.student_id ,studentBeingUpdated)}}>
+                    <Link to={`/dashboard/${this.props.match.params.user_id}/student/${currentStudent.student_id}`}>Save Changes</Link>
+                </RaisedButton>
             </div>
         )
     }

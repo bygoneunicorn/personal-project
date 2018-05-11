@@ -48,8 +48,6 @@ class AddStudent extends Component{
             <div>
                 <h2>Add a student here!
                     <IconButton 
-                        tooltip="Back to Students"
-                        tooltipPosition="bottom-center"
                         touch={true}
                         href={`/#/dashboard/${user_id}/students`}
                     >

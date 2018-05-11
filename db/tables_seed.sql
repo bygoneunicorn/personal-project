@@ -22,12 +22,10 @@ create table lessons(
     lesson_id serial primary key,
     student_id integer references students.student_id,
     date_of_lesson varchar(60),
-    time_of_lesson varchar(60),
     price decimal(8,2),
     group_lesson boolean
 );
-insert into lessons(student_id, date_of_lesson, time_of_lesson, price, group_lesson)
-values(1, '12-12-2020', '1:00PM', 35.00, false);
+-- insert into lessons(student_id, date_of_lesson, price, group_lesson);
 
 create table payments(
     payment_id serial primary key,
