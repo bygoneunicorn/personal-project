@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {getStudents} from '../../../ducks/students';
 
 import RaisedButton from 'material-ui/RaisedButton';
+import Moment from 'react-moment';
 
 import './Student.css';
 

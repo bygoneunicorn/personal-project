@@ -11,6 +11,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {logOut} from '../../ducks/user';
 import './Nav.css';
+import logo from './placeholderlogo.png';
 
 class Nav extends Component{
     constructor(props){
@@ -30,15 +31,15 @@ class Nav extends Component{
                     <FlatButton
                         label="Menu"
                         onClick={this.handleToggle}
+                        labelStyle={{
+                            color: 'white'
+                        }} 
                     />
                     <Drawer
                         docked={false}
                         width={250}
                         open={this.state.open}
                         onRequestChange={(open) => this.setState({open})}
-                        overlayClassName='drawer-overlay'
-                        className='drawer-root'
-                        containerClassName='drawer-container'
                     >
                             {
                                (this.props.user.user_id) ? 
@@ -47,6 +48,7 @@ class Nav extends Component{
                                     onClick={this.handleClose}
                                     primaryText="Dashboard" 
                                     containerElement={<Link to={`/dashboard/${this.props.user.user_id}`}
+                                    
                                 ></Link>}/>
                                ):
                                null
@@ -58,7 +60,7 @@ class Nav extends Component{
                     </Drawer>
                 </div>
                     <div className='logo-container'>
-                        <img src='http://via.placeholder.com/450x100' alt='Logo' className='logo'/>
+                        <img src={logo} alt='Logo' className='logo'/>
                     </div>
                         {
                             (this.props.user.user_id) ? 
@@ -66,20 +68,20 @@ class Nav extends Component{
                         <div className='login-button'>
                             <FlatButton 
                                 label="Logout"
-                                // onClick={() => axios.get('/logout').then( res => {
-                                //     console.log('Logged Out')
-                                // })} 
-                                href={process.env.REACT_APP_LOGOUT}                       
+                                href={process.env.REACT_APP_LOGOUT}  
+                                labelStyle={{
+                                    color: 'white'
+                                }}                     
                             />
                         </div>
                         ):
                         <div className='login-button'>
                             <FlatButton 
                                 label="Login/Signup"
-                                // onClick={()=> axios.get('/auth').then( res => {
-                                //     console.log('Logged In')
-                                // })}
                                 href={process.env.REACT_APP_LOGIN}
+                                labelStyle={{
+                                    color: 'white'
+                                }}
                             />
                         </div>
                         }

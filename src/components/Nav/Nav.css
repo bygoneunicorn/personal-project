@@ -1,19 +1,25 @@
 .main-nav{
     display: grid;
     grid-template-columns: 15% 70% 15%;
+    grid-template-rows: 35% 30% 35%;
     text-align: center;
-}
-.drawer-overlay{
-    background-color: blue;
-}
-.drawer-root{
-    background-color: #00000033;
-}
-.drawer-container{
-    background-color: blue;
+    border-bottom: 5px solid white;
 }
 .logo{
-    max-width: 450px;
+    margin-bottom: -4px;
+}
+@media(min-width: 651px){
+    .menu-button-container{
+        text-align: left;
+        grid-area: 2 / 1 / 2 / 2
+    }
+    .logo-container{
+        grid-area: 1 / 2 / 4 / 3
+    }
+    .login-button{
+        text-align: right;
+        grid-area: 2 / 3 / 3 / 3
+    }
 }
 
 @media(max-width: 650px){
@@ -22,7 +28,6 @@
     }
     .logo{
         width: 100%;
-        height: auto;
     }
     .logo-container{
         width: 100%;
@@ -30,3 +35,8 @@
         order: -1
     }
 }   
+/* #18121E Navy Blue
+    #233237 Gunmetal
+    #984B43 Rusty Red
+    #EAC67A Warm Yellow
+*/
