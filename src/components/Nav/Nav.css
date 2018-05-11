@@ -35,6 +35,11 @@
         order: -1
     }
 }   
+@media(max-width: 650px){
+    .drawer-container{
+        width: 100% !important;
+    }
+}
 /* #18121E Navy Blue
     #233237 Gunmetal
     #984B43 Rusty Red

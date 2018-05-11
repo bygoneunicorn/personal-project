@@ -10,6 +10,8 @@ import {getStudents} from '../../../ducks/students';
 import {handleStudentSelect, handleNewLessonDate, handleNewLessonPrice, addLesson} from '../../../ducks/lessons';
 // import areIntlLocalesSupported from 'intl-locales-supported';
 
+import './Lesson.css';
+
 // let DateTimeFormat;
 
 // if (areIntlLocalesSupported(['fr', 'fa-IR'])) {
@@ -20,6 +22,7 @@ import {handleStudentSelect, handleNewLessonDate, handleNewLessonPrice, addLesso
 //   require('intl/locale-data/jsonp/fr');
 //   require('intl/locale-data/jsonp/fa-IR');
 // }
+
 
 class AddLesson extends Component{
     componentDidMount(){
@@ -43,12 +46,37 @@ class AddLesson extends Component{
             )
         })
         return(
-            <div>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                height: '400px'
+            }}>
+                <div style={{
+                    backgroundColor: '#ffffff4d',
+                    padding: '30px',
+                    borderRadius: '15px',
+                    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+                }}>
+                <h3>Schedule a lesson</h3>
                 <SelectField
                     floatingLabelText="Select a student"
                     value={studentIdLessonToAdd}
                     onChange={(e, i, value) => handleStudentSelect(value)}
-                >
+                    style={{
+                        textAlign: 'left'
+                    }}
+                    // labelStyle={{
+                        //     color: 'white'
+                        // }}
+                        // floatingLabelStyle={{
+                    //     color: 'white'
+                    // }}
+                    // hintStyle={{
+                        //     color: 'white'
+                        // }}
+                        >
                     {studentSelection}
                 </SelectField>
                 {/* <DatePicker 
@@ -59,7 +87,7 @@ class AddLesson extends Component{
                         day: 'numeric',
                         month: 'long',
                         year: 'numeric',
-                      }).format}                
+                    }).format}                
                     onChange={handleNewLessonDate}
                 /> */}
                 <DateTimePicker
@@ -72,11 +100,17 @@ class AddLesson extends Component{
                     returnMomentDate={true}
                     firstDayOfWeek={0}
                     minutesStep={15}
-                />
+                    textFieldStyle={{
+                        color: '#233237'
+                    }}
+                    />
                 <SelectField
                     floatingLabelText="Length of lesson"
                     value={newLessonPrice}
                     onChange={(e, i, value) => handleNewLessonPrice(value)}
+                    style={{
+                        textAlign: 'left'
+                    }}
                 >
                     <MenuItem label={'30 minutes'} value={30} primaryText={'30 minutes'}/>
                     <MenuItem label={'45 minutes'} value={45} primaryText={'45 minutes'}/>
@@ -93,6 +127,7 @@ class AddLesson extends Component{
                 
                 />
             </div>
+        </div>
         )
     }
 }

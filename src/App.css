@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
+
 
 body{
   background:#233237;
@@ -14,6 +16,8 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-weight: 300;
 }
 a{
   color: linen;

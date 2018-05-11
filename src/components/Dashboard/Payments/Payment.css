@@ -29,3 +29,10 @@
         grid-column: 1 / 2;
     }
 }
+.unpaid-list-item{
+    transition: background-color 2s;
+}
+.unpaid-list-item:hover{
+    background-color: #984B43;
+    cursor: pointer;
+}

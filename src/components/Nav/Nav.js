@@ -20,6 +20,11 @@ class Nav extends Component{
 
     handleClose = () => this.setState({open: false});
     render(){
+        const drawerWidth = 
+            window.screen.availWidth < 650 ? 
+            '100%' :
+            250
+        console.log(window.screen.availWidth)
         return(
             <div className='main-nav'>
                 <div className='menu-button-container'> 
@@ -32,9 +37,15 @@ class Nav extends Component{
                     />
                     <Drawer
                         docked={false}
-                        width={250}
+                        width={drawerWidth}
                         open={this.state.open}
                         onRequestChange={(open) => this.setState({open})}
+                        containerStyle={{
+                            backgroundColor: '#ffffffa8'
+                        }}
+                        overlayStyle={{
+                            backgroundColor: '#00000080'
+                        }}
                     >
                             {
                                (this.props.user.user_id) ? 

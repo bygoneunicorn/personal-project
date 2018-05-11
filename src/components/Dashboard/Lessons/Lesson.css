@@ -1,5 +1,24 @@
 .lesson-list{
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
-    width: 100%;
 }
+@media(max-width: 800px){
+    .lesson-list{
+        grid-template-columns: 1fr 1fr 1fr
+    }
+}
+@media(max-width: 550px){
+    .lesson-list{
+        grid-template-columns: 1fr 1fr
+    }
+}
+.lesson-item{
+    transition: background-color 2s;
+}
+.lesson-item:hover{
+    background-color: #984B43;
+}
+label{
+    color: #233237 !important;
+}
+

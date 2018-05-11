@@ -5,10 +5,8 @@ class User extends Component{
     render(){
         return(
             <div className='user-main'>                            
-                {/* <p>Account Holder: {this.props.user.display_name}</p>
-                <p>Email: {this.props.user.email}</p>
-                <img src={this.props.user.img} alt='Profile'/> */}
-                <h2>Welcome to Yazzie Music {this.props.user.display_name}!</h2>
+                <h2>Welcome to Yazzie Music, {this.props.user.display_name}!</h2>
+                <p>Get started by selecting the Students Tab and adding a student!</p>
             </div>
         )
     }
