@@ -27,7 +27,7 @@ massive(CONNECTION_STRING).then( db =>{
     app.set('db', db);
     app.listen(SERVER_PORT, () => console.log(`Hear the beautiful music on port ${SERVER_PORT}`))
 });
-// app.use(express.static(__dirname + '/../build'))
+app.use(express.static(__dirname + '/../build'))
 
 app.use( bodyParser.json())
 app.use( cors() )
