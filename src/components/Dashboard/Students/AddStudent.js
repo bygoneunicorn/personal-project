@@ -110,7 +110,7 @@ class AddStudent extends Component{
                 <br />
 
                     <SelectField
-                        floatingLabelText="Student Gender"
+                        floatingLabelText="Gender"
                         value={newStudentGender}
                         onChange={(e, i, value) => handleGender(value)}
                         style={{
