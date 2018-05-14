@@ -18,6 +18,8 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import Moment from 'react-moment';
+
 class EditStudent extends Component{
     constructor(props){
         super(props)
@@ -28,6 +30,7 @@ class EditStudent extends Component{
         this.props.mountCurrentToBeUpdated(this.props.currentStudent)
     }
     render(){
+        console.log(this.props)
         const {
             currentStudent,
             studentBeingUpdated,
@@ -38,6 +41,8 @@ class EditStudent extends Component{
             updateGender,
             saveStudentChanges
         } = this.props
+        const tempDisplayDate = <Moment format="MMM D YYYY">{this.props.studentBeingUpdated.birthday}</Moment>
+        console.log(tempDisplayDate)
         return(
             <div style={{
                 display: 'flex',
@@ -70,11 +75,10 @@ class EditStudent extends Component{
                             floatingLabelText='Last Name'
                             />
                     <DatePicker 
-                            hintText={currentStudent.birthday} 
                             openToYearSelection={true} 
                             onChange={updateBirthday}
                             hideCalendarDate={false}
-                            floatingLabelText='Birthday'
+                            floatingLabelText={tempDisplayDate}
                             value={studentBeingUpdated.birthday}
                             
                             />

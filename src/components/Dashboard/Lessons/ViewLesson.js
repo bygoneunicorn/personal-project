@@ -40,6 +40,8 @@ class ViewLesson extends Component{
         const {user_id} = this.props.match.params
         const {first_name, last_name, date_of_lesson, price, lesson_id} = this.props.currentLesson
         const {updateDate, updatePrice, handleUpdatedDate, handleUpdatedPrice} = this.props
+        const tempDisplayDate = <Moment format="MMM D YYYY, HH:mm a">{updateDate}</Moment>
+
         return(
             !this.state.editable ? 
             (
@@ -89,7 +91,6 @@ class ViewLesson extends Component{
                     color: 'black'
                 }}>{first_name} {last_name}</h2>
                     <DateTimePicker
-                        hintText="Schedule a day and time"
                         clearIcon={null}
                         onChange={(dateTime) => handleUpdatedDate(dateTime)}
                         DatePicker={DatePickerDialog}
@@ -101,6 +102,7 @@ class ViewLesson extends Component{
                         textFieldStyle={{
                             color: '#233237'
                         }}
+                        floatingLabelText={tempDisplayDate}
                     />
                     <SelectField
                         floatingLabelText="Length of lesson"

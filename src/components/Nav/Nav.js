@@ -65,7 +65,7 @@ class Nav extends Component{
                     </Drawer>
                 </div>
                     <div className='logo-container'>
-                        <img src={logo} alt='Logo' className='logo'/>
+                        <Link to={"/"}><img src={logo} alt='Logo' className='logo'/></Link>
                     </div>
                         {
                             (this.props.user.user_id) ? 
