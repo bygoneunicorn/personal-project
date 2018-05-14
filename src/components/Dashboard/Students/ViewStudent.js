@@ -16,7 +16,6 @@ class ViewStudent extends Component{
     }
     
     render(){
-        console.log(this.props)
         const { student_id, first_name, last_name, birthday} = this.props.currentStudent
         const { user_id } = this.props.match.params;
 
@@ -42,21 +41,28 @@ class ViewStudent extends Component{
                 width: '100%',
             }}>
                     <div style={{
-                    backgroundColor: '#ffffff4d',
+                    backgroundColor: '#20202094',
                     padding: '30px',
                     borderRadius: '15px',
-                    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+                    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+                    minWidth: '250px'
+                    
                 }}>
                         <div>
                             <h2>{first_name} {last_name}</h2>
                             <p>{age} old</p>
-                            <Link to={`/dashboard/${user_id}/student/edit/${student_id}`}><RaisedButton>Edit</RaisedButton></Link>
-                            <Link to={`/dashboard/${user_id}/students`}><RaisedButton onClick={() => deleteStudent(student_id)}>Delete</RaisedButton></Link>
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'space-around'  
+                                }}>
+                                <Link to={`/dashboard/${user_id}/student/edit/${student_id}`}><RaisedButton>Edit</RaisedButton></Link>
+                                <Link to={`/dashboard/${user_id}/students`}><RaisedButton onClick={() => deleteStudent(student_id)}>Delete</RaisedButton></Link>
+                            </div>
                         </div>
                         <div>
                             <h3>Lessons:</h3>
                             {lessonsList}
-                            <Link to={`/dashboard/${user_id}/lessons/add`}><div>Add a Lesson</div></Link>
+                            <Link to={`/dashboard/${user_id}/lessons/add`}><RaisedButton>Add a Lesson</RaisedButton></Link>
                             
                         </div>
                     </div>

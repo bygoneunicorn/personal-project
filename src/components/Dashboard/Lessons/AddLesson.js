@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import DateTimePicker from 'material-ui-datetimepicker';
 import DatePickerDialog from 'material-ui/DatePicker/DatePickerDialog'
 import TimePickerDialog from 'material-ui/TimePicker/TimePickerDialog';
@@ -30,7 +31,6 @@ class AddLesson extends Component{
         this.props.getStudents(user_id)
     }
     render(){
-        console.log(this.props)
         const {
             studentIdLessonToAdd,
             newLessonDate, 
@@ -40,6 +40,7 @@ class AddLesson extends Component{
             handleNewLessonPrice,
             addLesson
         } = this.props
+        const {user_id} = this.props.match.params
         let studentSelection = this.props.students.map( student => {
             return(
                 <MenuItem key={student.student_id} value={student.student_id} primaryText={student.first_name} label={student.first_name}/>
@@ -54,7 +55,7 @@ class AddLesson extends Component{
                 height: '400px'
             }}>
                 <div style={{
-                    backgroundColor: '#ffffff4d',
+                    backgroundColor: '#ffffff94',
                     padding: '30px',
                     borderRadius: '15px',
                     boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
@@ -117,15 +118,17 @@ class AddLesson extends Component{
                     <MenuItem label={'1 hour'} value={60} primaryText={'1 hour'}/>                      
                 </SelectField>
                 <br />
-                <RaisedButton
-                label="Submit"
-                onClick={() => {addLesson(
-                    studentIdLessonToAdd,         
-                    newLessonDate, 
-                    newLessonPrice,
-                )}}
-                
-                />
+                <Link to={`/dashboard/${user_id}/lessons`}>
+                    <RaisedButton
+                    label="Submit"
+                    onClick={() => {addLesson(
+                        studentIdLessonToAdd,         
+                        newLessonDate, 
+                        newLessonPrice,
+                    )}}
+                    
+                    />
+                </Link>
             </div>
         </div>
         )

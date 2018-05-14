@@ -32,7 +32,6 @@ class ViewLesson extends Component{
           }));
     }
     handleRescheduleFn(date_of_lesson, price){
-        console.log(date_of_lesson)
         this.handleEditChange();
         this.props.mountLessonUpdate(date_of_lesson, price)
 
@@ -41,8 +40,6 @@ class ViewLesson extends Component{
         const {user_id} = this.props.match.params
         const {first_name, last_name, date_of_lesson, price, lesson_id} = this.props.currentLesson
         const {updateDate, updatePrice, handleUpdatedDate, handleUpdatedPrice} = this.props
-        console.log(this.props)
-
         return(
             !this.state.editable ? 
             (
@@ -53,7 +50,7 @@ class ViewLesson extends Component{
                 width: '100%',
             }}>
                 <div style={{
-                    backgroundColor: '#ffffff4d',
+                    backgroundColor: '#20202094',
                     padding: '30px',
                     borderRadius: '15px',
                     boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
@@ -83,12 +80,14 @@ class ViewLesson extends Component{
                 width: '100%',
             }}>
                 <div style={{
-                    backgroundColor: '#ffffff4d',
+                    backgroundColor: '#ffffff3d',
                     padding: '30px',
                     borderRadius: '15px',
                     boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
                 }}>
-                    <h2>{first_name} {last_name}</h2>
+                    <h2 style={{
+                    color: 'black'
+                }}>{first_name} {last_name}</h2>
                     <DateTimePicker
                         hintText="Schedule a day and time"
                         clearIcon={null}

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {
     handleFirstName, 
     handleLastName, 
@@ -30,7 +31,6 @@ if (areIntlLocalesSupported(['fr', 'fa-IR'])) {
 
 class AddStudent extends Component{
     render(){
-        console.log(this.props)        
         const {handleFirstName, 
                handleLastName,
                handleBirthday,
@@ -52,12 +52,15 @@ class AddStudent extends Component{
                 width: '100%',
             }}>
                 <div style={{
-                    backgroundColor: '#ffffff4d',
+                    backgroundColor: '#ffffff94',
                     padding: '30px',
                     borderRadius: '15px',
                     boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
                 }}>
-                <h2>Add a student here!
+                <h2
+                style={{
+                    color: 'black'
+                }}>Add a student here!
                     <IconButton 
                         touch={true}
                         href={`/#/dashboard/${user_id}/students`}
@@ -118,7 +121,7 @@ class AddStudent extends Component{
                         <MenuItem value={2} primaryText="Male" />
                     </SelectField>
                 <br />
-
+                <Link to={`/dashboard/${user_id}/students`}>
                     <RaisedButton 
                     label="Submit"
                     onClick={() => {addStudent(
@@ -131,6 +134,7 @@ class AddStudent extends Component{
                     )}
                 }
                 />
+                </Link>
                     <br />
                 </div>
             </div>

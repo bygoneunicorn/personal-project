@@ -1,7 +1,7 @@
 .dashboard-route-button{
     background-color: #c5c1c000 !important;
     transition: background-color 2s !important;
-    
+    height: 50px !important;
 }
 .dashboard-route-button:hover{
     background-color: #233237 !important;
@@ -15,7 +15,9 @@
     display: grid;
     /* grid-template-columns: 50% 50%; */
     grid-template-columns: 25% 25% 25% 25%;
-    margin: 5px 0 40px 0;
+    margin: 0 0 40px 0;
+    border-top: 12px solid #984B43;
+    border-bottom: 6px solid #984B43;
 }
 @media(max-width: 650px){
     .dashboard-nav{

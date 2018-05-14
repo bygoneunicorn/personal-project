@@ -13,7 +13,6 @@ class Lessons extends Component{
         this.props.getLessons(this.props.match.params.user_id)
     }
     render(){
-        console.log(this.props)
         const{user_id} = this.props.match.params
         const {lessons} = this.props
         let lessonList = lessons.map( lesson =>{
@@ -28,6 +27,7 @@ class Lessons extends Component{
         })
         return(
             <div>
+                <h3>Below are the lessons scheduled to your account</h3>
                 <div className='lesson-list'>
                     {lessonList}
                 </div>

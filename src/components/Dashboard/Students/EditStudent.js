@@ -18,8 +18,6 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import Moment from 'react-moment'
-
 class EditStudent extends Component{
     constructor(props){
         super(props)
@@ -30,7 +28,6 @@ class EditStudent extends Component{
         this.props.mountCurrentToBeUpdated(this.props.currentStudent)
     }
     render(){
-        console.log(this.props)
         const {
             currentStudent,
             studentBeingUpdated,
@@ -41,7 +38,6 @@ class EditStudent extends Component{
             updateGender,
             saveStudentChanges
         } = this.props
-        const birthDate = new Date()
         return(
             <div style={{
                 display: 'flex',
@@ -50,12 +46,16 @@ class EditStudent extends Component{
                 width: '100%',
             }}>
                 <div style={{
-                    backgroundColor: '#ffffff4d',
+                    backgroundColor: '#ffffff94',
                     padding: '30px',
                     borderRadius: '15px',
                     boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
                 }}>
-                    <h3>Updating Student</h3>
+                    <h3 style={{
+                                color: 'black'
+                                }}>
+                                Updating Student
+                                </h3>
                     <TextField
                             id="update-first-name"
                             defaultValue={currentStudent.first_name}

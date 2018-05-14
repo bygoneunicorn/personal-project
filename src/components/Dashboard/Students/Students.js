@@ -14,7 +14,6 @@ class Students extends Component{
         this.props.getStudents(user_id)
     }
     render(){
-        console.log(this.props)
         const {user_id} = this.props.user
         let studentList = this.props.students.students.map(student => {
             return(

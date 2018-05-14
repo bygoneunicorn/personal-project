@@ -76,7 +76,7 @@ export function addLesson(studentIdLessonToAdd, newLessonDate, newLessonPrice){
         newLessonPrice,
     })
     .then(res =>{
-        return null
+        console.log('it worked!')
     })
     return{
         type: NEW_LESSON_ADD,
