@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {getPaymentLessons} from '../../../ducks/payments';
+import Moment from 'react-moment';
 
+import './Payment.css'
 
 class PaymentHistory extends Component{
     componentDidMount(){
@@ -13,7 +15,10 @@ class PaymentHistory extends Component{
         }).map( e => {
             return(
                 <div key={e.lesson_id}>
-                    <h3>{e.first_name} {e.price}</h3>
+                    <h3>{e.first_name} ${e.price}</h3>
+                    <Moment format="MMM DD YYYY" date={e.date_of_lesson} />
+                    <br />
+                    <Moment format="hh:mm a" date={e.date_of_lesson} />
                 </div>
             )
         })
@@ -21,7 +26,9 @@ class PaymentHistory extends Component{
         return(
             <div>
                 <p>Payment history</p>
-                {unpaidList}
+                <div className='payment-history-container'>                    
+                    {unpaidList}
+                </div>
             </div>
         )
     }

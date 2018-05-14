@@ -45,23 +45,33 @@ class AddStudent extends Component{
                newStudentGender
             } = this.props
         return(
-            <div>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+            }}>
+                <div style={{
+                    backgroundColor: '#ffffff4d',
+                    padding: '30px',
+                    borderRadius: '15px',
+                    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+                }}>
                 <h2>Add a student here!
                     <IconButton 
                         touch={true}
                         href={`/#/dashboard/${user_id}/students`}
-                    >
+                        >
                         <NavigationArrowBack  />
                     </IconButton>
 
                 </h2>
-
                 <TextField
                         id="input-first-name"
                         hintText="First Name"
                         value={newStudentFirstName}
                         onChange={(e) => handleFirstName(e.target.value)}
-                    />
+                        />
                 <br/>
 
                 <TextField
@@ -69,7 +79,7 @@ class AddStudent extends Component{
                         hintText="Last Name"
                         value={newStudentLastName}
                         onChange={(e) => handleLastName(e.target.value)}
-                    />
+                        />
 
                     <DatePicker 
                         hintText="Select Birthday" 
@@ -82,25 +92,28 @@ class AddStudent extends Component{
                             day: 'numeric',
                             month: 'long',
                             year: 'numeric',
-                          }).format} 
-                    />
+                        }).format} 
+                        />
 
                     <TextField
                             id="input-history"
-                            hintText="Enter a brief history of student experience"
+                            hintText="Brief history of student experience"
                             value={newStudentHistory}
                             onChange={(e) => handleHistory(e.target.value)} 
                             multiLine={true}
                             rows={2}
                             rowsMax={5}
-                        />
+                            />
                 <br />
 
                     <SelectField
                         floatingLabelText="Student Gender"
                         value={newStudentGender}
                         onChange={(e, i, value) => handleGender(value)}
-                    >
+                        style={{
+                            textAlign: 'left'
+                        }}
+                        >
                         <MenuItem value={1} primaryText="Female" />
                         <MenuItem value={2} primaryText="Male" />
                     </SelectField>
@@ -116,9 +129,10 @@ class AddStudent extends Component{
                         newStudentHistory,
                         newStudentGender
                     )}
-                    }
-                    />
+                }
+                />
                     <br />
+                </div>
             </div>
         )
     }

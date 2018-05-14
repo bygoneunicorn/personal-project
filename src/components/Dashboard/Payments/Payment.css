@@ -36,3 +36,7 @@
     background-color: #984B43;
     cursor: pointer;
 }
+.payment-history-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}

@@ -90,7 +90,6 @@ export function addStudent(
     newStudentHistory,
     newStudentGender
 ){
-    newStudentBirthday = JSON.stringify(newStudentBirthday)
     axios.post('/student/add', 
     {
         user_id,
@@ -150,7 +149,7 @@ export function mountCurrentToBeUpdated(currentStudent){
     console.log('hit')
     return{
         type: MOUNT_UPDATE_STUDENT,
-        payload: currentStudent
+        payload: currentStudent,
     }
 }
 export function saveStudentChanges(student_id, studentBeingUpdated){

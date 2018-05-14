@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { getLesson, deleteLesson } from '../../../ducks/lessons';
+import { getLesson, deleteLesson, mountLessonUpdate, handleUpdatedDate, handleUpdatedPrice, saveLessonUpdates } from '../../../ducks/lessons';
 import RaisedButton from 'material-ui/RaisedButton';
-import DatePicker from 'material-ui/DatePicker';
-import TimePicker from 'material-ui/TimePicker';
+import DateTimePicker from 'material-ui-datetimepicker';
+import DatePickerDialog from 'material-ui/DatePicker/DatePickerDialog'
+import TimePickerDialog from 'material-ui/TimePicker/TimePickerDialog';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+
+import {Link} from 'react-router-dom';
 
 import Moment from 'react-moment';
 import 'moment-timezone';
@@ -17,6 +20,8 @@ class ViewLesson extends Component{
         this.state = {
             editable: false
         }
+        this.handleEditChange = this.handleEditChange.bind( this )
+        this.handleRescheduleFn = this.handleRescheduleFn.bind( this )
     }
     componentDidMount(){
         this.props.getLesson(this.props.match.params.lesson_id)
@@ -26,46 +31,101 @@ class ViewLesson extends Component{
             editable: !prevState.editable
           }));
     }
+    handleRescheduleFn(date_of_lesson, price){
+        console.log(date_of_lesson)
+        this.handleEditChange();
+        this.props.mountLessonUpdate(date_of_lesson, price)
+
+    }
     render(){
         const {user_id} = this.props.match.params
         const {first_name, last_name, date_of_lesson, price, lesson_id} = this.props.currentLesson
+        const {updateDate, updatePrice, handleUpdatedDate, handleUpdatedPrice} = this.props
+        console.log(this.props)
 
         return(
             !this.state.editable ? 
             (
-            <div>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+            }}>
+                <div style={{
+                    backgroundColor: '#ffffff4d',
+                    padding: '30px',
+                    borderRadius: '15px',
+                    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+                    minWidth: '300px'
+                }}>
                 <h2>{first_name} {last_name}</h2>
-                <Moment format="YYYY/MM/DD" date={date_of_lesson} />
-                <Moment format=" HH:mm" date={date_of_lesson} />
-                <p>Price: ${price}</p>
-                <RaisedButton onClick={()=> this.handleEditChange()}>Reschedule</RaisedButton>
-                <RaisedButton href={`/#/dashboard/${user_id}/lessons`} onClick={() => deleteLesson(lesson_id)}>Delete</RaisedButton>
+                <Moment format="MMM DD YYYY" date={date_of_lesson} />
+                <br />
+                <Moment format="hh:mm a" date={date_of_lesson} />
+                <p>Length: {price - '00'} minutes</p>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between'  
+                    }}>
+                    <RaisedButton onClick={()=> this.handleRescheduleFn(date_of_lesson, price)}>Reschedule</RaisedButton>
+                    <Link to={`/dashboard/${user_id}/lessons`}><RaisedButton onClick={() => deleteLesson(lesson_id)}>Delete</RaisedButton></Link>
+                </div>
             
+                </div>
             </div>
             )
             :
-            <div>
-                <h2>{first_name} {last_name}</h2>
-                <p>Date:</p>
-                <DatePicker 
-                    hintText="Schedule a day" 
-                    mode="landscape" 
-                />
-                <p>Time: </p>
-                <TimePicker
-                    hintText="Schedule a time"
-
-                />
-                <p>Price:</p>
-                <SelectField
-                    floatingLabelText="Length of lesson"
-                >
-                    <MenuItem label={'30 minutes'} value={30} primaryText={'30 minutes'}/>
-                    <MenuItem label={'45 minutes'} value={45} primaryText={'45 minutes'}/>
-                    <MenuItem label={'1 hour'} value={60} primaryText={'1 hour'}/>                      
-                </SelectField>
-                <br />
-                <RaisedButton onClick={()=> this.handleEditChange()}>Cancel</RaisedButton>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+            }}>
+                <div style={{
+                    backgroundColor: '#ffffff4d',
+                    padding: '30px',
+                    borderRadius: '15px',
+                    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+                }}>
+                    <h2>{first_name} {last_name}</h2>
+                    <DateTimePicker
+                        hintText="Schedule a day and time"
+                        clearIcon={null}
+                        onChange={(dateTime) => handleUpdatedDate(dateTime)}
+                        DatePicker={DatePickerDialog}
+                        datePickerMode='landscape'
+                        TimePicker={TimePickerDialog}
+                        returnMomentDate={true}
+                        firstDayOfWeek={0}
+                        minutesStep={15}
+                        textFieldStyle={{
+                            color: '#233237'
+                        }}
+                    />
+                    <SelectField
+                        floatingLabelText="Length of lesson"
+                        value={+updatePrice}
+                        style={{
+                            textAlign: 'left'
+                        }}
+                        onChange={(e, i, value) => handleUpdatedPrice(value)}
+                        >
+                        <MenuItem label={'30 minutes'} value={30} primaryText={'30 minutes'}/>
+                        <MenuItem label={'45 minutes'} value={45} primaryText={'45 minutes'}/>
+                        <MenuItem label={'1 hour'} value={60} primaryText={'1 hour'}/>                      
+                    </SelectField>
+                    <br />
+                    <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between'  
+                    }}>
+                        <Link to={`/dashboard/${user_id}/lessons`}>
+                            <RaisedButton onClick={()=> saveLessonUpdates(updateDate, updatePrice, lesson_id)}>Submit</RaisedButton>
+                        </Link>
+                        <RaisedButton onClick={()=> this.handleEditChange()}>Cancel</RaisedButton>
+                    </div>
+                </div>
             </div>
             
         )
@@ -74,8 +134,10 @@ class ViewLesson extends Component{
 
 function mapStateToProps( state ){
     return{
-        currentLesson: state.lessons.currentLesson
+        currentLesson: state.lessons.currentLesson,
+        updateDate: state.lessons.updateDate,
+        updatePrice: state.lessons.updatePrice
     }
 }
 
-export default connect(mapStateToProps, {getLesson, deleteLesson})(ViewLesson)
+export default connect(mapStateToProps, {getLesson, deleteLesson, mountLessonUpdate, handleUpdatedDate, handleUpdatedPrice, saveLessonUpdates })(ViewLesson)

@@ -23,7 +23,7 @@ class ViewStudent extends Component{
         let age = <Moment fromNow ago>{birthday}</Moment>
 
         let lessonsList = this.props.currentStudentLessons.map(( lesson => {
-            let lessonDate = <Moment format="MM/DD/YYYY" date={lesson.date_of_lesson} ></Moment>
+            let lessonDate = <Moment format="MMM DD YYYY" date={lesson.date_of_lesson} ></Moment>
             let lessonTime = <Moment format=" hh:mm a" date={lesson.time_of_lesson} ></Moment>
             return(
                 <div key={lesson.lesson_id}>
@@ -35,7 +35,18 @@ class ViewStudent extends Component{
         }))
 
         return(
-            <div>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+            }}>
+                    <div style={{
+                    backgroundColor: '#ffffff4d',
+                    padding: '30px',
+                    borderRadius: '15px',
+                    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+                }}>
                         <div>
                             <h2>{first_name} {last_name}</h2>
                             <p>{age} old</p>
@@ -48,6 +59,7 @@ class ViewStudent extends Component{
                             <Link to={`/dashboard/${user_id}/lessons/add`}><div>Add a Lesson</div></Link>
                             
                         </div>
+                    </div>
             </div>
         )
     }

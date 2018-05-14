@@ -15,4 +15,10 @@
     display: grid;
     /* grid-template-columns: 50% 50%; */
     grid-template-columns: 25% 25% 25% 25%;
+    margin: 5px 0 40px 0;
+}
+@media(max-width: 650px){
+    .dashboard-nav{
+        margin: 0;
+    }
 }

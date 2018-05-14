@@ -27,7 +27,7 @@ massive(CONNECTION_STRING).then( db =>{
     app.set('db', db);
     app.listen(SERVER_PORT, () => console.log(`Hear the beautiful music on port ${SERVER_PORT}`))
 });
-app.use(express.static(__dirname + '/../build'))
+// app.use(express.static(__dirname + '/../build'))
 
 app.use( bodyParser.json())
 app.use( cors() )
@@ -110,6 +110,7 @@ app.get('/lessons/:user_id', lc.getAllLessons)
 app.get('/lesson/:lesson_id', lc.getOneLesson)
 app.get('/lessons/bystudent/:student_id', lc.getLessonByStudent)
 app.post('/lesson/add', lc.addLesson)
+app.put('/lesson/update', lc.updateLesson)
 app.delete('/lesson/:lesson_id', lc.deleteLesson)
 
 //payment information endpoints

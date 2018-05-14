@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {logOut} from '../../ducks/user';
 import './Nav.css';
-import logo from './placeholderlogo.png';
+import logo from './logo2.png';
 
 class Nav extends Component{
     constructor(props){
@@ -24,7 +24,6 @@ class Nav extends Component{
             window.screen.availWidth < 650 ? 
             '100%' :
             250
-        console.log(window.screen.availWidth)
         return(
             <div className='main-nav'>
                 <div className='menu-button-container'> 
@@ -41,7 +40,7 @@ class Nav extends Component{
                         open={this.state.open}
                         onRequestChange={(open) => this.setState({open})}
                         containerStyle={{
-                            backgroundColor: '#ffffffa8'
+                            backgroundColor: '#ffffffd4'
                         }}
                         overlayStyle={{
                             backgroundColor: '#00000080'

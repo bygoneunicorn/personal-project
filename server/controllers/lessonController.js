@@ -33,6 +33,16 @@ module.exports = {
                 console.log(err)
             })
     },
+    updateLesson: (req, res, next) => {
+        const {updateDate, updatePrice, lesson_id} = req.body
+        req.app.get('db').update_lesson([updateDate, updatePrice, lesson_id])
+            .then( lesson => {
+                console.log('successfully updated')
+                res.status(200).send()
+            }).catch((err) => {
+                console.log(err)
+            })
+    },
     deleteLesson: (req, res, next) => {
         const {lesson_id} = req.params
         req.app.get('db').delete_lesson([lesson_id])
