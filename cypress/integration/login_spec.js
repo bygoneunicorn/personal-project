@@ -1,3 +1,4 @@
 it('Should verify Login' , () => {
-    cy.request('https://yazziemusicstudios.com/#/?#q=cypress.io+cors')
+    cy.visit('https://yazziemusicstudios.com/#/')
+        .request('http://yazziemusicstudios.com/#/')
 })
