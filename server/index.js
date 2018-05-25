@@ -37,7 +37,6 @@ app.use( session({
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    secure: true
 }));
 
 //authentication
