@@ -25,7 +25,7 @@ class Nav extends Component{
         //     '100%' :
         //     250
         return(
-            <div className='main-nav'>
+            <div className='main-nav main-nav-scroll'>
                 <div className='menu-button-container'> 
                     <FlatButton
                         label="Menu"

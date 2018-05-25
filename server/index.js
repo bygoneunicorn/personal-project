@@ -36,7 +36,8 @@ app.use( cors() )
 app.use( session({
     secret: SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    secure: true
 }));
 
 //authentication
@@ -84,6 +85,7 @@ app.get('/auth/callback', passport.authenticate('auth0', {
 
 app.get('/auth/me', function(req,res) {
     if(req.user){
+        console.log(req.session)
         res.status(200).send(req.user)
     }else{
         res.sendStatus(401)
